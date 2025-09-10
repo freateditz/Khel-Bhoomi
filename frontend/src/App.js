@@ -283,6 +283,7 @@ const AuthPage = () => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -300,6 +301,9 @@ const AuthPage = () => {
         title: isLogin ? "Welcome back!" : "Account created successfully!",
         description: `Logged in as ${response.data.user.username}`
       });
+      
+      // Navigate to dashboard after successful login/registration
+      navigate('/dashboard');
     } catch (error) {
       toast({
         title: "Error",
