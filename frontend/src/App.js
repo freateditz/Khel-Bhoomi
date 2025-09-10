@@ -27,7 +27,19 @@ import {
   LogOut,
   Camera,
   Video,
-  Award
+  Award,
+  User,
+  Home,
+  Edit,
+  MapPin,
+  Calendar,
+  Star,
+  MoreHorizontal,
+  Send,
+  BookOpen,
+  TrendingUp,
+  UserCheck,
+  Medal
 } from "lucide-react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -99,167 +111,253 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Background with Grid Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      {/* Enhanced Background with Purple Theme */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-indigo-50 to-violet-100">
         <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent"></div>
+        
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-20 w-32 h-32 bg-purple-200/30 rounded-full blur-xl animate-float"></div>
+        <div className="absolute top-40 right-32 w-24 h-24 bg-indigo-200/30 rounded-full blur-xl animate-float-delayed"></div>
+        <div className="absolute bottom-20 left-1/3 w-40 h-40 bg-violet-200/30 rounded-full blur-xl animate-float"></div>
       </div>
       
-      {/* Hero Section */}
+      {/* Enhanced Navigation */}
       <div className="relative z-10">
-        <nav className="flex items-center justify-between p-6">
-          <div className="flex items-center space-x-2">
-            <Trophy className="h-8 w-8 text-orange-500" />
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-              Khel Bhoomi
-            </h1>
+        <nav className="flex items-center justify-between p-6 backdrop-blur-lg bg-white/70 border-b border-purple-100/50">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl shadow-lg">
+              <Trophy className="h-8 w-8 text-white" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                Khel Bhoomi
+              </h1>
+              <p className="text-xs text-purple-500 font-medium">Sports Community</p>
+            </div>
           </div>
           
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="text-slate-700 hover:text-orange-500">
+          <div className="flex items-center space-x-6">
+            <Button variant="ghost" className="text-slate-700 hover:text-purple-600 hover:bg-purple-50">
               About
             </Button>
-            <Button variant="ghost" className="text-slate-700 hover:text-orange-500">
+            <Button variant="ghost" className="text-slate-700 hover:text-purple-600 hover:bg-purple-50">
               Features
             </Button>
-            <Button variant="outline" className="border-orange-200 text-orange-600 hover:bg-orange-50" onClick={() => navigate('/auth')}>
+            <Button variant="ghost" className="text-slate-700 hover:text-purple-600 hover:bg-purple-50">
+              Community
+            </Button>
+            <Button 
+              variant="outline" 
+              className="border-purple-200 text-purple-600 hover:bg-purple-50" 
+              onClick={() => navigate('/auth')}
+            >
               Login
             </Button>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white" onClick={() => navigate('/auth')}>
-              Sign Up
+            <Button 
+              className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white shadow-lg" 
+              onClick={() => navigate('/auth')}
+            >
+              Join Now
             </Button>
           </div>
         </nav>
 
-        {/* Main Hero Content */}
-        <div className="container mx-auto px-6 pt-20 pb-32">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-6xl font-bold text-slate-900 mb-6 leading-tight">
-              Connect, Compete, and
-              <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent block">
-                Conquer Sports
-              </span>
-            </h1>
-            
-            <p className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-              The ultimate sports social platform where athletes showcase talent, scouts discover champions, 
-              and fans celebrate the spirit of sports together.
-            </p>
-
-            <div className="flex items-center justify-center space-x-6 mb-16">
-              <Button 
-                size="lg" 
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                onClick={() => navigate('/dashboard')}
-              >
-                <Trophy className="h-5 w-5 mr-2" />
-                Explore Feed
-              </Button>
+        {/* Enhanced Hero Section */}
+        <div className="container mx-auto px-6 pt-16 pb-24">
+          <div className="max-w-6xl mx-auto">
+            {/* Hero Content */}
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center space-x-2 bg-purple-100/50 backdrop-blur-sm px-4 py-2 rounded-full mb-8">
+                <Star className="h-4 w-4 text-purple-500" />
+                <span className="text-purple-700 font-medium text-sm">India's Premier Sports Social Platform</span>
+              </div>
               
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-2 border-orange-200 text-orange-600 hover:bg-orange-50 px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                onClick={() => navigate('/auth')}
-              >
-                <Users className="h-5 w-5 mr-2" />
-                Join Community
-              </Button>
+              <h1 className="hero-title text-7xl md:text-8xl font-black text-slate-900 mb-8 leading-none">
+                <span className="block">Welcome to</span>
+                <span className="block bg-gradient-to-r from-purple-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
+                  Khel Bhoomi
+                </span>
+              </h1>
+              
+              <p className="text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+                Where athletes shine, scouts discover champions, and fans celebrate the spirit of sports. 
+                Join India's most vibrant sports community today.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white px-10 py-6 text-xl rounded-2xl shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 transition-all duration-300"
+                  onClick={() => navigate('/auth')}
+                >
+                  <Trophy className="h-6 w-6 mr-3" />
+                  Explore Sports Feed
+                </Button>
+                
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-2 border-purple-200 text-purple-600 hover:bg-purple-50 px-10 py-6 text-xl rounded-2xl shadow-xl hover:shadow-purple-500/10 transform hover:scale-105 transition-all duration-300"
+                  onClick={() => navigate('/auth')}
+                >
+                  <Users className="h-6 w-6 mr-3" />
+                  Join Community
+                </Button>
+              </div>
+
+              {/* Stats Section */}
+              <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-16">
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-purple-600 mb-2">10K+</div>
+                  <div className="text-slate-600">Active Athletes</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-indigo-600 mb-2">500+</div>
+                  <div className="text-slate-600">Professional Scouts</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-violet-600 mb-2">50K+</div>
+                  <div className="text-slate-600">Sports Fans</div>
+                </div>
+              </div>
             </div>
 
-            {/* Role Selection Cards */}
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <Card className="glass-card group hover:scale-105 transition-all duration-300 border-0 shadow-xl">
-                <CardHeader className="text-center pb-4">
-                  <div className="mx-auto w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Trophy className="h-8 w-8 text-white" />
+            {/* Enhanced Role Selection Cards */}
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+              <Card className="glass-card group hover:scale-105 transition-all duration-500 border-0 shadow-2xl overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10"></div>
+                <CardHeader className="text-center pb-6 relative z-10">
+                  <div className="mx-auto w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                    <Trophy className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle className="text-xl font-bold text-slate-800">Athletes</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-slate-800 mb-2">Athletes</CardTitle>
+                  <p className="text-blue-600 font-semibold">Showcase Your Talent</p>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-slate-600 mb-4">
-                    Showcase your achievements, share training updates, and connect with scouts.
+                <CardContent className="text-center relative z-10">
+                  <p className="text-slate-600 mb-6 leading-relaxed">
+                    Build your sports profile, share achievements, connect with scouts, and get discovered by teams looking for talent like yours.
                   </p>
-                  <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white" onClick={() => navigate('/auth')}>
+                  <div className="flex flex-wrap gap-2 justify-center mb-6">
+                    <Badge variant="secondary" className="bg-blue-100 text-blue-600">Portfolio</Badge>
+                    <Badge variant="secondary" className="bg-blue-100 text-blue-600">Achievements</Badge>
+                    <Badge variant="secondary" className="bg-blue-100 text-blue-600">Networking</Badge>
+                  </div>
+                  <Button 
+                    className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white shadow-lg"
+                    onClick={() => navigate('/auth')}
+                  >
                     Join as Athlete
                   </Button>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:scale-105 transition-all duration-300 border-0 shadow-xl">
-                <CardHeader className="text-center pb-4">
-                  <div className="mx-auto w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Target className="h-8 w-8 text-white" />
+              <Card className="glass-card group hover:scale-105 transition-all duration-500 border-0 shadow-2xl overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-emerald-500/10"></div>
+                <CardHeader className="text-center pb-6 relative z-10">
+                  <div className="mx-auto w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                    <Target className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle className="text-xl font-bold text-slate-800">Scouts</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-slate-800 mb-2">Scouts</CardTitle>
+                  <p className="text-green-600 font-semibold">Discover Champions</p>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-slate-600 mb-4">
-                    Discover emerging talent, evaluate players, and build winning teams.
+                <CardContent className="text-center relative z-10">
+                  <p className="text-slate-600 mb-6 leading-relaxed">
+                    Find the next sports stars, evaluate player performance, build winning teams, and connect with emerging talent across India.
                   </p>
-                  <Button className="w-full bg-green-500 hover:bg-green-600 text-white" onClick={() => navigate('/auth')}>
+                  <div className="flex flex-wrap gap-2 justify-center mb-6">
+                    <Badge variant="secondary" className="bg-green-100 text-green-600">Talent Hunt</Badge>
+                    <Badge variant="secondary" className="bg-green-100 text-green-600">Analytics</Badge>
+                    <Badge variant="secondary" className="bg-green-100 text-green-600">Recruiting</Badge>
+                  </div>
+                  <Button 
+                    className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white shadow-lg"
+                    onClick={() => navigate('/auth')}
+                  >
                     Join as Scout
                   </Button>
                 </CardContent>
               </Card>
 
-              <Card className="glass-card group hover:scale-105 transition-all duration-300 border-0 shadow-xl">
-                <CardHeader className="text-center pb-4">
-                  <div className="mx-auto w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Heart className="h-8 w-8 text-white" />
+              <Card className="glass-card group hover:scale-105 transition-all duration-500 border-0 shadow-2xl overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10"></div>
+                <CardHeader className="text-center pb-6 relative z-10">
+                  <div className="mx-auto w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                    <Heart className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle className="text-xl font-bold text-slate-800">Fans</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-slate-800 mb-2">Fans</CardTitle>
+                  <p className="text-purple-600 font-semibold">Celebrate Sports</p>
                 </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-slate-600 mb-4">
-                    Follow your favorite athletes, discuss matches, and celebrate victories.
+                <CardContent className="text-center relative z-10">
+                  <p className="text-slate-600 mb-6 leading-relaxed">
+                    Follow your favorite athletes, discuss matches, celebrate victories, and be part of India's most passionate sports community.
                   </p>
-                  <Button className="w-full bg-purple-500 hover:bg-purple-600 text-white" onClick={() => navigate('/auth')}>
+                  <div className="flex flex-wrap gap-2 justify-center mb-6">
+                    <Badge variant="secondary" className="bg-purple-100 text-purple-600">Follow</Badge>
+                    <Badge variant="secondary" className="bg-purple-100 text-purple-600">Discuss</Badge>
+                    <Badge variant="secondary" className="bg-purple-100 text-purple-600">Celebrate</Badge>
+                  </div>
+                  <Button 
+                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg"
+                    onClick={() => navigate('/auth')}
+                  >
                     Join as Fan
                   </Button>
                 </CardContent>
               </Card>
             </div>
-          </div>
-        </div>
 
-        {/* Sports Images Section */}
-        <div className="relative">
-          <div className="container mx-auto px-6 py-16">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="glass-card overflow-hidden group">
-                <img 
-                  src="https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHxhdGhsZXRlfGVufDB8fHx8MTc1NzUzMTYxMnww&ixlib=rb-4.1.0&q=85" 
-                  alt="Basketball" 
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="p-4">
-                  <h3 className="font-semibold text-slate-800">Elite Basketball</h3>
-                  <p className="text-sm text-slate-600">High-performance training and competition</p>
-                </div>
+            {/* Enhanced Sports Showcase */}
+            <div className="mb-16">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-slate-800 mb-4">Sports We Love</h2>
+                <p className="text-xl text-slate-600">From grassroots to professional level</p>
               </div>
-
-              <div className="glass-card overflow-hidden group">
-                <img 
-                  src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwxfHxhdGhsZXRlfGVufDB8fHx8MTc1NzUzMTYxMnww&ixlib=rb-4.1.0&q=85" 
-                  alt="Track and Field" 
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="p-4">
-                  <h3 className="font-semibold text-slate-800">Track & Field</h3>
-                  <p className="text-sm text-slate-600">Speed, endurance, and athletic excellence</p>
+              
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="glass-card overflow-hidden group cursor-pointer">
+                  <div className="relative">
+                    <img 
+                      src="https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHxhdGhsZXRlfGVufDB8fHx8MTc1NzUzMTYxMnww&ixlib=rb-4.1.0&q=85" 
+                      alt="Elite Basketball" 
+                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold mb-1">Basketball</h3>
+                      <p className="text-sm opacity-90">High-performance training</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              <div className="glass-card overflow-hidden group">
-                <img 
-                  src="https://images.unsplash.com/photo-1697767394715-75e8183e85bb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwxfHxzcG9ydHMlMjBjb21tdW5pdHl8ZW58MHx8fHwxNzU3NTMxNjA1fDA&ixlib=rb-4.1.0&q=85" 
-                  alt="Soccer Community" 
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="p-4">
-                  <h3 className="font-semibold text-slate-800">Football Community</h3>
-                  <p className="text-sm text-slate-600">Global sport, local communities</p>
+                <div className="glass-card overflow-hidden group cursor-pointer">
+                  <div className="relative">
+                    <img 
+                      src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwxfHxhdGhsZXRlfGVufDB8fHx8MTc1NzUzMTYxMnww&ixlib=rb-4.1.0&q=85" 
+                      alt="Track and Field" 
+                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold mb-1">Track & Field</h3>
+                      <p className="text-sm opacity-90">Athletic excellence</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="glass-card overflow-hidden group cursor-pointer">
+                  <div className="relative">
+                    <img 
+                      src="https://images.unsplash.com/photo-1697767394715-75e8183e85bb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwxfHxzcG9ydHMlMjBjb21tdW5pdHl8ZW58MHx8fHwxNzU3NTMxNjA1fDA&ixlib=rb-4.1.0&q=85" 
+                      alt="Football Community" 
+                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold mb-1">Football</h3>
+                      <p className="text-sm opacity-90">Global sport, local community</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -316,16 +414,21 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-indigo-50 to-violet-100 p-4">
       <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
       
       <Card className="w-full max-w-md glass-card border-0 shadow-2xl relative z-10">
         <CardHeader className="text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <Trophy className="h-8 w-8 text-orange-500" />
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-              Khel Bhoomi
-            </h1>
+            <div className="p-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl shadow-lg">
+              <Trophy className="h-8 w-8 text-white" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                Khel Bhoomi
+              </h1>
+              <p className="text-xs text-purple-500 font-medium">Sports Community</p>
+            </div>
           </div>
           <CardTitle className="text-2xl font-bold text-slate-800">
             {isLogin ? 'Welcome Back' : 'Join the Community'}
@@ -345,7 +448,7 @@ const AuthPage = () => {
                 value={formData.username}
                 onChange={(e) => setFormData({...formData, username: e.target.value})}
                 required
-                className="mt-1"
+                className="mt-1 focus:ring-purple-500 focus:border-purple-500"
               />
             </div>
 
@@ -359,7 +462,7 @@ const AuthPage = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     required
-                    className="mt-1"
+                    className="mt-1 focus:ring-purple-500 focus:border-purple-500"
                   />
                 </div>
 
@@ -371,14 +474,14 @@ const AuthPage = () => {
                     value={formData.full_name}
                     onChange={(e) => setFormData({...formData, full_name: e.target.value})}
                     required
-                    className="mt-1"
+                    className="mt-1 focus:ring-purple-500 focus:border-purple-500"
                   />
                 </div>
 
                 <div>
                   <Label htmlFor="role" className="text-slate-700">I am a...</Label>
                   <Select value={formData.role} onValueChange={(value) => setFormData({...formData, role: value})}>
-                    <SelectTrigger className="mt-1">
+                    <SelectTrigger className="mt-1 focus:ring-purple-500 focus:border-purple-500">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -399,13 +502,13 @@ const AuthPage = () => {
                 value={formData.password}
                 onChange={(e) => setFormData({...formData, password: e.target.value})}
                 required
-                className="mt-1"
+                className="mt-1 focus:ring-purple-500 focus:border-purple-500"
               />
             </div>
 
             <Button 
               type="submit" 
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+              className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white"
               disabled={loading}
             >
               {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
@@ -416,7 +519,7 @@ const AuthPage = () => {
               <button
                 type="button"
                 onClick={() => setIsLogin(!isLogin)}
-                className="text-orange-500 hover:text-orange-600 font-medium"
+                className="text-purple-500 hover:text-purple-600 font-medium"
               >
                 {isLogin ? 'Sign up' : 'Sign in'}
               </button>
@@ -428,11 +531,13 @@ const AuthPage = () => {
   );
 };
 
-// Feed Component
+// Enhanced Feed Component
 const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState({ content: '', post_type: 'text', sports_tags: [] });
   const [loading, setLoading] = useState(false);
+  const [comments, setComments] = useState({});
+  const [newComment, setNewComment] = useState({});
   const { user } = useAuth();
   const { toast } = useToast();
 
@@ -472,18 +577,40 @@ const Feed = () => {
     }
   };
 
+  const toggleComments = (postId) => {
+    setComments(prev => ({
+      ...prev,
+      [postId]: !prev[postId]
+    }));
+  };
+
+  const addComment = (postId) => {
+    if (!newComment[postId]?.trim()) return;
+    
+    // Mock comment addition
+    toast({
+      title: "Comment added!",
+      description: "Your comment has been posted."
+    });
+    
+    setNewComment(prev => ({
+      ...prev,
+      [postId]: ''
+    }));
+  };
+
   const getRoleColor = (role) => {
     switch (role) {
-      case 'athlete': return 'bg-blue-100 text-blue-800';
-      case 'scout': return 'bg-green-100 text-green-800';
-      case 'fan': return 'bg-purple-100 text-purple-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'athlete': return 'bg-blue-100 text-blue-700 border-blue-200';
+      case 'scout': return 'bg-green-100 text-green-700 border-green-200';
+      case 'fan': return 'bg-purple-100 text-purple-700 border-purple-200';
+      default: return 'bg-gray-100 text-gray-700 border-gray-200';
     }
   };
 
   const getRoleIcon = (role) => {
     switch (role) {
-      case 'athlete': return <Trophy className="h-3 w-3" />;
+      case 'athlete': return <Medal className="h-3 w-3" />;
       case 'scout': return <Target className="h-3 w-3" />;
       case 'fan': return <Heart className="h-3 w-3" />;
       default: return null;
@@ -492,12 +619,12 @@ const Feed = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-4 space-y-6">
-      {/* Create Post Card */}
+      {/* Enhanced Create Post Card */}
       <Card className="glass-card border-0 shadow-lg">
         <CardContent className="p-6">
           <div className="flex items-start space-x-4">
-            <Avatar>
-              <AvatarFallback className="bg-orange-100 text-orange-600">
+            <Avatar className="w-12 h-12">
+              <AvatarFallback className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold">
                 {user?.full_name?.charAt(0) || user?.username?.charAt(0)}
               </AvatarFallback>
             </Avatar>
@@ -507,21 +634,21 @@ const Feed = () => {
                 placeholder={`What's happening in sports, ${user?.full_name?.split(' ')[0] || user?.username}?`}
                 value={newPost.content}
                 onChange={(e) => setNewPost({...newPost, content: e.target.value})}
-                className="border-0 resize-none focus:ring-0 text-lg placeholder:text-slate-400"
-                rows={3}
+                className="border-0 resize-none focus:ring-0 text-lg placeholder:text-slate-400 min-h-[100px]"
+                rows={4}
               />
               
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Button variant="ghost" size="sm" className="text-slate-500 hover:text-orange-500">
+                <div className="flex items-center space-x-3">
+                  <Button variant="ghost" size="sm" className="text-slate-500 hover:text-purple-600 hover:bg-purple-50">
                     <Camera className="h-4 w-4 mr-1" />
                     Photo
                   </Button>
-                  <Button variant="ghost" size="sm" className="text-slate-500 hover:text-orange-500">
+                  <Button variant="ghost" size="sm" className="text-slate-500 hover:text-purple-600 hover:bg-purple-50">
                     <Video className="h-4 w-4 mr-1" />
                     Video
                   </Button>
-                  <Button variant="ghost" size="sm" className="text-slate-500 hover:text-orange-500">
+                  <Button variant="ghost" size="sm" className="text-slate-500 hover:text-purple-600 hover:bg-purple-50">
                     <Award className="h-4 w-4 mr-1" />
                     Achievement
                   </Button>
@@ -530,7 +657,7 @@ const Feed = () => {
                 <Button 
                   onClick={createPost}
                   disabled={loading || !newPost.content.trim()}
-                  className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6"
+                  className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white rounded-xl px-8"
                 >
                   {loading ? 'Posting...' : 'Post'}
                 </Button>
@@ -540,69 +667,155 @@ const Feed = () => {
         </CardContent>
       </Card>
 
-      {/* Posts Feed */}
-      <div className="space-y-4">
+      {/* Enhanced Posts Feed */}
+      <div className="space-y-6">
         {posts.map((post) => (
-          <Card key={post.id} className="glass-card border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <CardContent className="p-6">
-              <div className="flex items-start space-x-4">
-                <Avatar>
-                  <AvatarFallback className="bg-slate-100 text-slate-600">
-                    {post.username?.charAt(0)}
-                  </AvatarFallback>
-                </Avatar>
-                
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <h4 className="font-semibold text-slate-800">{post.username}</h4>
-                    <Badge className={`text-xs px-2 py-1 ${getRoleColor(post.user_role)}`}>
-                      <span className="flex items-center space-x-1">
-                        {getRoleIcon(post.user_role)}
-                        <span className="capitalize">{post.user_role}</span>
-                      </span>
-                    </Badge>
-                    <span className="text-sm text-slate-500">
-                      {new Date(post.created_at).toLocaleDateString()}
-                    </span>
+          <Card key={post.id} className="glass-card border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+            <CardContent className="p-0">
+              {/* Post Header */}
+              <div className="p-6 pb-4">
+                <div className="flex items-start space-x-4">
+                  <Avatar className="w-12 h-12">
+                    <AvatarFallback className="bg-slate-100 text-slate-600 font-semibold">
+                      {post.username?.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-2 mb-1">
+                      <h4 className="font-semibold text-slate-800 text-lg">{post.username}</h4>
+                      <Badge className={`text-xs px-2 py-1 border ${getRoleColor(post.user_role)}`}>
+                        <span className="flex items-center space-x-1">
+                          {getRoleIcon(post.user_role)}
+                          <span className="capitalize">{post.user_role}</span>
+                        </span>
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-slate-500">
+                      {new Date(post.created_at).toLocaleDateString('en-IN', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
+                    </p>
                   </div>
                   
-                  <p className="text-slate-700 mb-4 leading-relaxed">{post.content}</p>
-                  
-                  {post.image_url && (
-                    <div className="mb-4 rounded-lg overflow-hidden">
-                      <img 
-                        src={post.image_url} 
-                        alt="Post content" 
-                        className="w-full h-auto max-h-96 object-cover"
-                      />
-                    </div>
-                  )}
-                  
-                  {post.sports_tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {post.sports_tags.map((tag, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
-                          #{tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-                  
-                  <div className="flex items-center space-x-6 text-slate-500">
-                    <Button variant="ghost" size="sm" className="hover:text-red-500 hover:bg-red-50">
-                      <Heart className="h-4 w-4 mr-1" />
-                      {post.likes}
+                  <Button variant="ghost" size="sm" className="text-slate-400 hover:text-slate-600">
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Post Content */}
+              <div className="px-6 pb-4">
+                <p className="text-slate-700 text-lg leading-relaxed mb-4">{post.content}</p>
+                
+                {post.image_url && (
+                  <div className="mb-4 rounded-xl overflow-hidden">
+                    <img 
+                      src={post.image_url} 
+                      alt="Post content" 
+                      className="w-full h-auto max-h-96 object-cover"
+                    />
+                  </div>
+                )}
+                
+                {post.sports_tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {post.sports_tags.map((tag, index) => (
+                      <Badge key={index} variant="secondary" className="text-xs bg-purple-100 text-purple-600 hover:bg-purple-200 cursor-pointer">
+                        #{tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Post Actions */}
+              <div className="border-t border-slate-100 p-4">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-6">
+                    <Button variant="ghost" size="sm" className="hover:text-red-500 hover:bg-red-50 transition-colors">
+                      <Heart className="h-5 w-5 mr-2" />
+                      <span className="font-medium">{post.likes}</span>
                     </Button>
-                    <Button variant="ghost" size="sm" className="hover:text-blue-500 hover:bg-blue-50">
-                      <MessageCircle className="h-4 w-4 mr-1" />
-                      {post.comments}
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="hover:text-blue-500 hover:bg-blue-50 transition-colors"
+                      onClick={() => toggleComments(post.id)}
+                    >
+                      <MessageCircle className="h-5 w-5 mr-2" />
+                      <span className="font-medium">{post.comments}</span>
                     </Button>
-                    <Button variant="ghost" size="sm" className="hover:text-green-500 hover:bg-green-50">
-                      <Share2 className="h-4 w-4 mr-1" />
+                    <Button variant="ghost" size="sm" className="hover:text-green-500 hover:bg-green-50 transition-colors">
+                      <Share2 className="h-5 w-5 mr-2" />
                       Share
                     </Button>
                   </div>
                 </div>
+
+                {/* Comments Section */}
+                {comments[post.id] && (
+                  <div className="space-y-4 border-t border-slate-100 pt-4">
+                    {/* Add Comment */}
+                    <div className="flex items-center space-x-3">
+                      <Avatar className="w-8 h-8">
+                        <AvatarFallback className="bg-purple-100 text-purple-600 text-sm">
+                          {user?.full_name?.charAt(0) || user?.username?.charAt(0)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 flex items-center space-x-2">
+                        <Input
+                          placeholder="Write a comment..."
+                          value={newComment[post.id] || ''}
+                          onChange={(e) => setNewComment(prev => ({
+                            ...prev,
+                            [post.id]: e.target.value
+                          }))}
+                          className="border-slate-200 focus:border-purple-300 focus:ring-purple-300"
+                          onKeyPress={(e) => {
+                            if (e.key === 'Enter') {
+                              addComment(post.id);
+                            }
+                          }}
+                        />
+                        <Button 
+                          size="sm" 
+                          onClick={() => addComment(post.id)}
+                          className="bg-purple-500 hover:bg-purple-600 text-white"
+                        >
+                          <Send className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Sample Comments */}
+                    <div className="space-y-3">
+                      <div className="flex items-start space-x-3">
+                        <Avatar className="w-8 h-8">
+                          <AvatarFallback className="bg-blue-100 text-blue-600 text-sm">S</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                          <div className="bg-slate-50 rounded-lg p-3">
+                            <div className="flex items-center space-x-2 mb-1">
+                              <span className="font-semibold text-sm">sports_fan_123</span>
+                              <Badge className="text-xs bg-purple-100 text-purple-600 border-purple-200">Fan</Badge>
+                            </div>
+                            <p className="text-sm text-slate-700">Great performance! Keep it up! 🔥</p>
+                          </div>
+                          <div className="flex items-center space-x-4 mt-2 text-xs text-slate-500">
+                            <button className="hover:text-purple-600">Like</button>
+                            <button className="hover:text-purple-600">Reply</button>
+                            <span>2h</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -612,74 +825,383 @@ const Feed = () => {
   );
 };
 
+// Profile Dashboard Component
+const ProfileDashboard = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const AthleteProfile = () => (
+    <div className="space-y-6">
+      {/* Profile Header */}
+      <Card className="glass-card border-0 shadow-lg">
+        <CardContent className="p-6">
+          <div className="flex items-start space-x-6">
+            <Avatar className="w-24 h-24">
+              <AvatarFallback className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-2xl font-bold">
+                {user?.full_name?.charAt(0) || user?.username?.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
+            <div className="flex-1">
+              <div className="flex items-center space-x-3 mb-2">
+                <h1 className="text-3xl font-bold text-slate-800">{user?.full_name || user?.username}</h1>
+                <Badge className="bg-blue-100 text-blue-700 border-blue-200">
+                  <Medal className="h-3 w-3 mr-1" />
+                  Athlete
+                </Badge>
+              </div>
+              <p className="text-slate-600 mb-4">{user?.bio || "Passionate athlete dedicated to excellence in sports"}</p>
+              <div className="flex items-center space-x-4 text-sm text-slate-500">
+                <div className="flex items-center space-x-1">
+                  <MapPin className="h-4 w-4" />
+                  <span>Mumbai, India</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <Calendar className="h-4 w-4" />
+                  <span>Joined {new Date(user?.created_at).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}</span>
+                </div>
+              </div>
+            </div>
+            <Button className="bg-purple-500 hover:bg-purple-600 text-white">
+              <Edit className="h-4 w-4 mr-2" />
+              Edit Profile
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-4 gap-4">
+        <Card className="glass-card border-0 shadow-lg">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-blue-600 mb-1">156</div>
+            <div className="text-sm text-slate-600">Posts</div>
+          </CardContent>
+        </Card>
+        <Card className="glass-card border-0 shadow-lg">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-green-600 mb-1">2.3K</div>
+            <div className="text-sm text-slate-600">Followers</div>
+          </CardContent>
+        </Card>
+        <Card className="glass-card border-0 shadow-lg">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-purple-600 mb-1">45</div>
+            <div className="text-sm text-slate-600">Achievements</div>
+          </CardContent>
+        </Card>
+        <Card className="glass-card border-0 shadow-lg">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-indigo-600 mb-1">8.5</div>
+            <div className="text-sm text-slate-600">Rating</div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Achievements & Skills */}
+      <div className="grid md:grid-cols-2 gap-6">
+        <Card className="glass-card border-0 shadow-lg">
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Award className="h-5 w-5 text-yellow-500" />
+              <span>Recent Achievements</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg">
+              <Trophy className="h-8 w-8 text-yellow-500" />
+              <div>
+                <div className="font-semibold">State Championship Winner</div>
+                <div className="text-sm text-slate-600">Basketball - 2024</div>
+              </div>
+            </div>
+            <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+              <Medal className="h-8 w-8 text-blue-500" />
+              <div>
+                <div className="font-semibold">Best Player Award</div>
+                <div className="text-sm text-slate-600">Regional Tournament - 2024</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="glass-card border-0 shadow-lg">
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <TrendingUp className="h-5 w-5 text-green-500" />
+              <span>Skills & Stats</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <div className="flex justify-between mb-1">
+                <span className="text-sm font-medium">Shooting Accuracy</span>
+                <span className="text-sm text-slate-600">85%</span>
+              </div>
+              <div className="w-full bg-slate-200 rounded-full h-2">
+                <div className="bg-blue-500 h-2 rounded-full" style={{width: '85%'}}></div>
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-between mb-1">
+                <span className="text-sm font-medium">Speed & Agility</span>
+                <span className="text-sm text-slate-600">92%</span>
+              </div>
+              <div className="w-full bg-slate-200 rounded-full h-2">
+                <div className="bg-green-500 h-2 rounded-full" style={{width: '92%'}}></div>
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-between mb-1">
+                <span className="text-sm font-medium">Team Work</span>
+                <span className="text-sm text-slate-600">95%</span>
+              </div>
+              <div className="w-full bg-slate-200 rounded-full h-2">
+                <div className="bg-purple-500 h-2 rounded-full" style={{width: '95%'}}></div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+
+  const ScoutProfile = () => (
+    <div className="space-y-6">
+      {/* Profile Header */}
+      <Card className="glass-card border-0 shadow-lg">
+        <CardContent className="p-6">
+          <div className="flex items-start space-x-6">
+            <Avatar className="w-24 h-24">
+              <AvatarFallback className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-2xl font-bold">
+                {user?.full_name?.charAt(0) || user?.username?.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
+            <div className="flex-1">
+              <div className="flex items-center space-x-3 mb-2">
+                <h1 className="text-3xl font-bold text-slate-800">{user?.full_name || user?.username}</h1>
+                <Badge className="bg-green-100 text-green-700 border-green-200">
+                  <Target className="h-3 w-3 mr-1" />
+                  Scout
+                </Badge>
+              </div>
+              <p className="text-slate-600 mb-4">{user?.bio || "Professional scout discovering the next generation of sports talent"}</p>
+              <div className="flex items-center space-x-4 text-sm text-slate-500">
+                <div className="flex items-center space-x-1">
+                  <MapPin className="h-4 w-4" />
+                  <span>Delhi, India</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <Calendar className="h-4 w-4" />
+                  <span>Joined {new Date(user?.created_at).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}</span>
+                </div>
+              </div>
+            </div>
+            <Button className="bg-purple-500 hover:bg-purple-600 text-white">
+              <Edit className="h-4 w-4 mr-2" />
+              Edit Profile
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Scout Stats */}
+      <div className="grid grid-cols-4 gap-4">
+        <Card className="glass-card border-0 shadow-lg">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-green-600 mb-1">89</div>
+            <div className="text-sm text-slate-600">Athletes Scouted</div>
+          </CardContent>
+        </Card>
+        <Card className="glass-card border-0 shadow-lg">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-blue-600 mb-1">23</div>
+            <div className="text-sm text-slate-600">Successful Placements</div>
+          </CardContent>
+        </Card>
+        <Card className="glass-card border-0 shadow-lg">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-purple-600 mb-1">15</div>
+            <div className="text-sm text-slate-600">Teams Connected</div>
+          </CardContent>
+        </Card>
+        <Card className="glass-card border-0 shadow-lg">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-indigo-600 mb-1">95%</div>
+            <div className="text-sm text-slate-600">Success Rate</div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Recent Discoveries & Expertise */}
+      <div className="grid md:grid-cols-2 gap-6">
+        <Card className="glass-card border-0 shadow-lg">
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <UserCheck className="h-5 w-5 text-green-500" />
+              <span>Recent Discoveries</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+              <Avatar className="w-10 h-10">
+                <AvatarFallback className="bg-blue-500 text-white">RK</AvatarFallback>
+              </Avatar>
+              <div className="flex-1">
+                <div className="font-semibold">Rajesh Kumar</div>
+                <div className="text-sm text-slate-600">Basketball • 19 years • Mumbai</div>
+              </div>
+              <Badge variant="secondary" className="bg-green-100 text-green-600">Recruited</Badge>
+            </div>
+            <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+              <Avatar className="w-10 h-10">
+                <AvatarFallback className="bg-purple-500 text-white">PS</AvatarFallback>
+              </Avatar>
+              <div className="flex-1">
+                <div className="font-semibold">Priya Sharma</div>
+                <div className="text-sm text-slate-600">Track & Field • 21 years • Delhi</div>
+              </div>
+              <Badge variant="secondary" className="bg-yellow-100 text-yellow-600">In Review</Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="glass-card border-0 shadow-lg">
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <BookOpen className="h-5 w-5 text-purple-500" />
+              <span>Expertise & Focus</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex flex-wrap gap-2">
+              <Badge className="bg-blue-100 text-blue-600">Basketball</Badge>
+              <Badge className="bg-green-100 text-green-600">Track & Field</Badge>
+              <Badge className="bg-purple-100 text-purple-600">Swimming</Badge>
+              <Badge className="bg-indigo-100 text-indigo-600">Football</Badge>
+            </div>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium">Age Group</span>
+                <span className="text-sm text-slate-600">16-25 years</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium">Experience</span>
+                <span className="text-sm text-slate-600">8+ years</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium">Specialization</span>
+                <span className="text-sm text-slate-600">Youth Development</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="max-w-4xl mx-auto p-4">
+      {user?.role === 'athlete' ? <AthleteProfile /> : user?.role === 'scout' ? <ScoutProfile /> : <AthleteProfile />}
+    </div>
+  );
+};
+
 // Main Dashboard Component
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const [activeTab, setActiveTab] = useState('feed');
+  const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-violet-100">
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       
-      {/* Top Navigation */}
-      <nav className="relative z-10 bg-white/70 backdrop-blur-lg border-b border-white/20 shadow-lg">
+      {/* Enhanced Top Navigation */}
+      <nav className="relative z-10 bg-white/80 backdrop-blur-xl border-b border-purple-100/50 shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-8">
-              <div className="flex items-center space-x-2">
-                <Trophy className="h-8 w-8 text-orange-500" />
-                <h1 className="text-xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-                  Khel Bhoomi
-                </h1>
+              <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+                <div className="p-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl shadow-lg">
+                  <Trophy className="h-8 w-8 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                    Khel Bhoomi
+                  </h1>
+                  <p className="text-xs text-purple-500 font-medium">Sports Community</p>
+                </div>
               </div>
               
-              <div className="hidden md:flex items-center space-x-6">
+              <div className="hidden md:flex items-center space-x-2">
                 <Button 
                   variant={activeTab === 'feed' ? 'default' : 'ghost'} 
                   onClick={() => setActiveTab('feed')}
-                  className={activeTab === 'feed' ? 'bg-orange-500 hover:bg-orange-600 text-white' : 'text-slate-600 hover:text-orange-500'}
+                  className={activeTab === 'feed' 
+                    ? 'bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white' 
+                    : 'text-slate-600 hover:text-purple-600 hover:bg-purple-50'
+                  }
                 >
+                  <Home className="h-4 w-4 mr-2" />
                   Feed
                 </Button>
                 <Button 
-                  variant="ghost" 
-                  className="text-slate-600 hover:text-orange-500"
+                  variant={activeTab === 'profile' ? 'default' : 'ghost'} 
+                  onClick={() => setActiveTab('profile')}
+                  className={activeTab === 'profile' 
+                    ? 'bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white' 
+                    : 'text-slate-600 hover:text-purple-600 hover:bg-purple-50'
+                  }
                 >
+                  <User className="h-4 w-4 mr-2" />
+                  Profile
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  className="text-slate-600 hover:text-purple-600 hover:bg-purple-50"
+                >
+                  <Search className="h-4 w-4 mr-2" />
                   Explore
                 </Button>
                 <Button 
                   variant="ghost" 
-                  className="text-slate-600 hover:text-orange-500"
+                  className="text-slate-600 hover:text-purple-600 hover:bg-purple-50"
                 >
+                  <MessageCircle className="h-4 w-4 mr-2" />
                   Messages
                 </Button>
               </div>
             </div>
             
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-orange-500">
+              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-purple-600 hover:bg-purple-50">
                 <Search className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-orange-500">
+              <Button variant="ghost" size="sm" className="text-slate-600 hover:text-purple-600 hover:bg-purple-50">
                 <Bell className="h-5 w-5" />
               </Button>
               
-              <div className="flex items-center space-x-2">
-                <Avatar className="h-8 w-8">
-                  <AvatarFallback className="bg-orange-100 text-orange-600 text-sm">
+              <div className="flex items-center space-x-3">
+                <Avatar className="h-10 w-10">
+                  <AvatarFallback className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold">
                     {user?.full_name?.charAt(0) || user?.username?.charAt(0)}
                   </AvatarFallback>
                 </Avatar>
-                <span className="hidden md:block text-sm font-medium text-slate-700">
-                  {user?.full_name || user?.username}
-                </span>
+                <div className="hidden md:block">
+                  <div className="text-sm font-medium text-slate-700">
+                    {user?.full_name || user?.username}
+                  </div>
+                  <div className="text-xs text-purple-500 capitalize">
+                    {user?.role}
+                  </div>
+                </div>
               </div>
               
               <Button 
                 variant="ghost" 
                 size="sm" 
                 onClick={logout}
-                className="text-slate-600 hover:text-red-500"
+                className="text-slate-600 hover:text-red-500 hover:bg-red-50"
               >
                 <LogOut className="h-4 w-4" />
               </Button>
@@ -691,6 +1213,7 @@ const Dashboard = () => {
       {/* Main Content */}
       <div className="relative z-10 container mx-auto py-8">
         {activeTab === 'feed' && <Feed />}
+        {activeTab === 'profile' && <ProfileDashboard />}
       </div>
       
       <Toaster />
@@ -704,10 +1227,12 @@ const ProtectedRoute = ({ children }) => {
   
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-indigo-50 to-violet-100">
         <div className="text-center">
-          <Trophy className="h-12 w-12 text-orange-500 mx-auto mb-4 animate-spin" />
-          <p className="text-slate-600">Loading...</p>
+          <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Trophy className="h-8 w-8 text-white animate-pulse" />
+          </div>
+          <p className="text-slate-600 font-medium">Loading Khel Bhoomi...</p>
         </div>
       </div>
     );
