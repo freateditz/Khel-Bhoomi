@@ -122,10 +122,10 @@ const LandingPage = () => {
             <Button variant="ghost" className="text-slate-700 hover:text-orange-500">
               Features
             </Button>
-            <Button variant="outline" className="border-orange-200 text-orange-600 hover:bg-orange-50">
+            <Button variant="outline" className="border-orange-200 text-orange-600 hover:bg-orange-50" onClick={() => navigate('/auth')}>
               Login
             </Button>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white" onClick={() => navigate('/auth')}>
               Sign Up
             </Button>
           </div>
