@@ -150,6 +150,7 @@ const LandingPage = () => {
               <Button 
                 size="lg" 
                 className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => navigate('/dashboard')}
               >
                 <Trophy className="h-5 w-5 mr-2" />
                 Explore Feed
@@ -159,6 +160,7 @@ const LandingPage = () => {
                 size="lg" 
                 variant="outline" 
                 className="border-2 border-orange-200 text-orange-600 hover:bg-orange-50 px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => navigate('/auth')}
               >
                 <Users className="h-5 w-5 mr-2" />
                 Join Community
