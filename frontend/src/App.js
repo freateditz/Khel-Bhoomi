@@ -197,7 +197,7 @@ const LandingPage = () => {
                   <p className="text-slate-600 mb-4">
                     Discover emerging talent, evaluate players, and build winning teams.
                   </p>
-                  <Button className="w-full bg-green-500 hover:bg-green-600 text-white">
+                  <Button className="w-full bg-green-500 hover:bg-green-600 text-white" onClick={() => navigate('/auth')}>
                     Join as Scout
                   </Button>
                 </CardContent>
