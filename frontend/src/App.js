@@ -214,7 +214,7 @@ const LandingPage = () => {
                   <p className="text-slate-600 mb-4">
                     Follow your favorite athletes, discuss matches, and celebrate victories.
                   </p>
-                  <Button className="w-full bg-purple-500 hover:bg-purple-600 text-white">
+                  <Button className="w-full bg-purple-500 hover:bg-purple-600 text-white" onClick={() => navigate('/auth')}>
                     Join as Fan
                   </Button>
                 </CardContent>
