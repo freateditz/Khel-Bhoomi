@@ -95,6 +95,8 @@ const AuthProvider = ({ children }) => {
 
 // Landing Page Component
 const LandingPage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Background with Grid Pattern */}
