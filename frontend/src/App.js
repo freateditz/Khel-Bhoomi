@@ -180,7 +180,7 @@ const LandingPage = () => {
                   <p className="text-slate-600 mb-4">
                     Showcase your achievements, share training updates, and connect with scouts.
                   </p>
-                  <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+                  <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white" onClick={() => navigate('/auth')}>
                     Join as Athlete
                   </Button>
                 </CardContent>
