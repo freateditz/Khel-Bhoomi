@@ -2011,7 +2011,7 @@ const Feed = () => {
               {/* Post Header */}
               <div className="p-6 pb-4">
                 <div className="flex items-start space-x-4">
-                  <Avatar className="w-12 h-12">
+                  <Avatar className="w-12 h-12 cursor-pointer hover:opacity-80 transition-opacity" onClick={() => navigate(`/profile/${post.username}`)}>
                     <AvatarFallback className="bg-slate-100 text-slate-600 font-semibold">
                       {post.username?.charAt(0)}
                     </AvatarFallback>
