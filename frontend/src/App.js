@@ -2119,6 +2119,7 @@ const Dashboard = () => {
                 <Button 
                   variant="ghost" 
                   className="text-slate-600 hover:text-purple-600 hover:bg-purple-50"
+                  onClick={() => navigate('/messages')}
                 >
                   <MessageCircle className="h-4 w-4 mr-2" />
                   Messages
