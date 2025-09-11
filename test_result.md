@@ -137,15 +137,18 @@ backend:
 
   - task: "Create user profile update endpoints"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Added PUT /api/users/me endpoint with UserUpdate model to handle profile updates for full_name, bio, profile_image, and sports_interests fields."
+        - working: true
+          agent: "testing"
+          comment: "✅ VERIFIED: PUT /api/users/me endpoint working perfectly. All test scenarios passed: 1) Login with demo_athlete successful, 2) Individual field updates (full_name, bio, sports_interests) working correctly, 3) Multiple field updates working, 4) GET /api/users/me returns updated data after each update, 5) Invalid JWT token correctly rejected with 401, 6) Empty request body correctly rejected with 400. All profile update functionality is fully operational."
 
 frontend:
   - task: "Add demo credentials display on login page"
