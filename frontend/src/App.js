@@ -105,7 +105,596 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-// Landing Page Component
+// Features Page Component
+const FeaturesPage = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-violet-100">
+      <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
+      
+      {/* Navigation */}
+      <nav className="relative z-10 flex items-center justify-between p-6 backdrop-blur-lg bg-white/70 border-b border-purple-100/50">
+        <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+          <div className="p-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl shadow-lg">
+            <Trophy className="h-8 w-8 text-white" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              Khel Bhoomi
+            </h1>
+            <p className="text-xs text-purple-500 font-medium">Sports Community</p>
+          </div>
+        </div>
+        
+        <div className="flex items-center space-x-4">
+          <Button variant="ghost" onClick={() => navigate('/')}>Home</Button>
+          <Button variant="ghost" onClick={() => navigate('/about')}>About</Button>
+          <Button onClick={() => navigate('/auth')}>Join Now</Button>
+        </div>
+      </nav>
+
+      {/* Features Content */}
+      <div className="relative z-10 container mx-auto px-6 py-16">
+        <div className="text-center mb-16">
+          <h1 className="text-6xl font-bold text-slate-800 mb-6">Powerful Features</h1>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            Everything you need to excel in sports, connect with like-minded individuals, and showcase your talent to the world.
+          </p>
+        </div>
+
+        {/* Feature Categories */}
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          {/* For Athletes */}
+          <Card className="glass-card border-0 shadow-xl">
+            <CardHeader>
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-4">
+                <Trophy className="h-8 w-8 text-white" />
+              </div>
+              <CardTitle className="text-2xl">For Athletes</CardTitle>
+              <CardDescription>Showcase your talent and get discovered</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                <div>
+                  <h4 className="font-semibold">Digital Portfolio</h4>
+                  <p className="text-sm text-slate-600">Create comprehensive profiles with achievements, stats, and videos</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                <div>
+                  <h4 className="font-semibold">Performance Tracking</h4>
+                  <p className="text-sm text-slate-600">Track your progress, set goals, and monitor improvements</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                <div>
+                  <h4 className="font-semibold">Scout Connections</h4>
+                  <p className="text-sm text-slate-600">Get discovered by professional scouts and recruiters</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* For Scouts */}
+          <Card className="glass-card border-0 shadow-xl">
+            <CardHeader>
+              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-4">
+                <Target className="h-8 w-8 text-white" />
+              </div>
+              <CardTitle className="text-2xl">For Scouts</CardTitle>
+              <CardDescription>Discover and evaluate emerging talent</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                <div>
+                  <h4 className="font-semibold">Talent Database</h4>
+                  <p className="text-sm text-slate-600">Access comprehensive database of athletes with detailed profiles</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                <div>
+                  <h4 className="font-semibold">Advanced Filters</h4>
+                  <p className="text-sm text-slate-600">Search by sport, location, age, skill level, and achievements</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                <div>
+                  <h4 className="font-semibold">Direct Communication</h4>
+                  <p className="text-sm text-slate-600">Connect directly with athletes and their representatives</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* For Fans */}
+          <Card className="glass-card border-0 shadow-xl">
+            <CardHeader>
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-4">
+                <Heart className="h-8 w-8 text-white" />
+              </div>
+              <CardTitle className="text-2xl">For Fans</CardTitle>
+              <CardDescription>Follow and support your favorite athletes</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                <div>
+                  <h4 className="font-semibold">Follow Athletes</h4>
+                  <p className="text-sm text-slate-600">Stay updated with your favorite athletes' journeys and achievements</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                <div>
+                  <h4 className="font-semibold">Community Discussions</h4>
+                  <p className="text-sm text-slate-600">Engage in sports discussions and celebrate victories together</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                <div>
+                  <h4 className="font-semibold">Live Updates</h4>
+                  <p className="text-sm text-slate-600">Get real-time updates on matches, tournaments, and events</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Technical Features */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-slate-800 mb-4">Technical Excellence</h2>
+          <p className="text-xl text-slate-600">Built with modern technology for the best user experience</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { icon: <MessageCircle className="h-8 w-8" />, title: "Real-time Chat", desc: "Instant messaging between athletes and scouts" },
+            { icon: <Camera className="h-8 w-8" />, title: "Media Upload", desc: "Share photos and videos of your achievements" },
+            { icon: <Bell className="h-8 w-8" />, title: "Smart Notifications", desc: "Never miss important updates or opportunities" },
+            { icon: <Search className="h-8 w-8" />, title: "Advanced Search", desc: "Find exactly what you're looking for with powerful filters" }
+          ].map((feature, index) => (
+            <Card key={index} className="glass-card border-0 shadow-lg text-center">
+              <CardContent className="p-6">
+                <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 text-white">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-semibold text-slate-800 mb-2">{feature.title}</h3>
+                <p className="text-slate-600 text-sm">{feature.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// About Page Component  
+const AboutPage = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-violet-100">
+      <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
+      
+      {/* Navigation */}
+      <nav className="relative z-10 flex items-center justify-between p-6 backdrop-blur-lg bg-white/70 border-b border-purple-100/50">
+        <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+          <div className="p-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl shadow-lg">
+            <Trophy className="h-8 w-8 text-white" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              Khel Bhoomi
+            </h1>
+            <p className="text-xs text-purple-500 font-medium">Sports Community</p>
+          </div>
+        </div>
+        
+        <div className="flex items-center space-x-4">
+          <Button variant="ghost" onClick={() => navigate('/')}>Home</Button>
+          <Button variant="ghost" onClick={() => navigate('/features')}>Features</Button>
+          <Button onClick={() => navigate('/auth')}>Join Now</Button>
+        </div>
+      </nav>
+
+      {/* About Content */}
+      <div className="relative z-10 container mx-auto px-6 py-16">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-6xl font-bold text-slate-800 mb-6">About Khel Bhoomi</h1>
+          <p className="text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            We're on a mission to revolutionize Indian sports by connecting talented athletes with professional scouts and passionate fans, creating opportunities that transform lives.
+          </p>
+        </div>
+
+        {/* Mission & Vision */}
+        <div className="grid md:grid-cols-2 gap-12 mb-16">
+          <Card className="glass-card border-0 shadow-xl">
+            <CardContent className="p-8">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6">
+                <Target className="h-8 w-8 text-white" />
+              </div>
+              <h2 className="text-3xl font-bold text-slate-800 mb-4">Our Mission</h2>
+              <p className="text-slate-600 text-lg leading-relaxed">
+                To democratize sports opportunities in India by providing a platform where talent is recognized regardless of background, location, or connections. We believe every athlete deserves a chance to shine.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="glass-card border-0 shadow-xl">
+            <CardContent className="p-8">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6">
+                <Star className="h-8 w-8 text-white" />
+              </div>
+              <h2 className="text-3xl font-bold text-slate-800 mb-4">Our Vision</h2>
+              <p className="text-slate-600 text-lg leading-relaxed">
+                To become India's premier sports discovery platform, where the next Olympic champion, cricket star, or sporting legend is discovered and nurtured through our community-driven ecosystem.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Story Section */}
+        <div className="mb-16">
+          <Card className="glass-card border-0 shadow-xl">
+            <CardContent className="p-12">
+              <div className="text-center mb-8">
+                <h2 className="text-4xl font-bold text-slate-800 mb-4">Our Story</h2>
+                <p className="text-xl text-slate-600">From idea to India's sports revolution</p>
+              </div>
+              
+              <div className="max-w-4xl mx-auto">
+                <p className="text-slate-700 text-lg leading-relaxed mb-6">
+                  Khel Bhoomi was born from a simple observation: India has incredible sporting talent, but many athletes struggle to get the recognition and opportunities they deserve. Traditional scouting methods often miss gems hidden in small towns and rural areas.
+                </p>
+                <p className="text-slate-700 text-lg leading-relaxed mb-6">
+                  Founded in 2025, our platform leverages technology to bridge this gap. We've created a space where athletes can showcase their abilities, scouts can discover new talent efficiently, and fans can support the sports ecosystem at every level.
+                </p>
+                <p className="text-slate-700 text-lg leading-relaxed">
+                  Today, we're proud to be home to over 10,000 athletes, 500+ professional scouts, and 50,000+ passionate sports fans, all working together to elevate Indian sports to new heights.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Values Section */}
+        <div className="mb-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Our Values</h2>
+            <p className="text-xl text-slate-600">What drives us every day</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="glass-card border-0 shadow-lg text-center">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Users className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800 mb-4">Inclusivity</h3>
+                <p className="text-slate-600">Sports excellence knows no boundaries. We welcome athletes from all backgrounds, regions, and skill levels.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card border-0 shadow-lg text-center">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Trophy className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800 mb-4">Excellence</h3>
+                <p className="text-slate-600">We strive for excellence in everything we do, from our platform features to the opportunities we create.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card border-0 shadow-lg text-center">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Heart className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800 mb-4">Community</h3>
+                <p className="text-slate-600">Sports are best when shared. We foster a supportive community that celebrates every achievement.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Team Section */}
+        <div className="text-center">
+          <h2 className="text-4xl font-bold text-slate-800 mb-4">Join Our Mission</h2>
+          <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
+            Whether you're an athlete with dreams, a scout seeking talent, or a fan who loves sports, you have a place in our community.
+          </p>
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white px-12 py-6 text-xl rounded-2xl shadow-2xl"
+            onClick={() => navigate('/auth')}
+          >
+            <Trophy className="h-6 w-6 mr-3" />
+            Be Part of the Revolution
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Messages Page Component
+const MessagesPage = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [selectedChat, setSelectedChat] = useState(null);
+  const [messageText, setMessageText] = useState('');
+
+  // Mock conversations data
+  const conversations = [
+    {
+      id: 1,
+      name: "Sarah Talent Finder",
+      role: "scout",
+      lastMessage: "I'd love to discuss some opportunities with you!",
+      timestamp: "2 min ago",
+      unread: 2,
+      avatar: "ST",
+      online: true
+    },
+    {
+      id: 2, 
+      name: "Mumbai Basketball Academy",
+      role: "organization",
+      lastMessage: "Training camp starts next Monday. Are you interested?",
+      timestamp: "1 hour ago",
+      unread: 0,
+      avatar: "MBA",
+      online: false
+    },
+    {
+      id: 3,
+      name: "Raj Sports Lover", 
+      role: "fan",
+      lastMessage: "Great performance in the last match! 🔥",
+      timestamp: "3 hours ago", 
+      unread: 1,
+      avatar: "RS",
+      online: true
+    },
+    {
+      id: 4,
+      name: "Delhi Sports Club",
+      role: "organization", 
+      lastMessage: "We have some exciting sponsorship opportunities...",
+      timestamp: "Yesterday",
+      unread: 0,
+      avatar: "DSC",
+      online: false
+    }
+  ];
+
+  const mockMessages = [
+    {
+      id: 1,
+      senderId: 1,
+      text: "Hi Alex! I've been following your basketball performances and I'm really impressed.",
+      timestamp: "10:30 AM",
+      isOwn: false
+    },
+    {
+      id: 2, 
+      senderId: user?.id,
+      text: "Thank you! That means a lot coming from a professional scout.",
+      timestamp: "10:32 AM", 
+      isOwn: true
+    },
+    {
+      id: 3,
+      senderId: 1,
+      text: "I'd love to discuss some opportunities with you! Would you be available for a call this week?",
+      timestamp: "10:35 AM",
+      isOwn: false
+    }
+  ];
+
+  const sendMessage = () => {
+    if (messageText.trim()) {
+      // Mock sending message
+      setMessageText('');
+    }
+  };
+
+  return (
+    <div className="h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-violet-100 flex">
+      {/* Sidebar */}
+      <div className="w-80 bg-white/80 backdrop-blur-xl border-r border-purple-100 flex flex-col">
+        {/* Header */}
+        <div className="p-6 border-b border-purple-100">
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-2xl font-bold text-slate-800">Messages</h1>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={() => navigate('/dashboard')}
+              className="text-slate-500 hover:text-purple-600"
+            >
+              ✕
+            </Button>
+          </div>
+          <div className="relative">
+            <Search className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+            <Input 
+              placeholder="Search conversations..." 
+              className="pl-10 focus:ring-purple-500 focus:border-purple-500"
+            />
+          </div>
+        </div>
+
+        {/* Conversations List */}
+        <div className="flex-1 overflow-y-auto">
+          {conversations.map((conversation) => (
+            <div 
+              key={conversation.id}
+              className={`p-4 border-b border-purple-50 cursor-pointer hover:bg-purple-50 transition-colors ${
+                selectedChat?.id === conversation.id ? 'bg-purple-100' : ''
+              }`}
+              onClick={() => setSelectedChat(conversation)}
+            >
+              <div className="flex items-start space-x-3">
+                <div className="relative">
+                  <Avatar className="w-12 h-12">
+                    <AvatarFallback className={`${
+                      conversation.role === 'scout' ? 'bg-green-100 text-green-600' :
+                      conversation.role === 'fan' ? 'bg-purple-100 text-purple-600' :
+                      'bg-blue-100 text-blue-600'
+                    } font-semibold`}>
+                      {conversation.avatar}
+                    </AvatarFallback>
+                  </Avatar>
+                  {conversation.online && (
+                    <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                  )}
+                </div>
+                
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="font-semibold text-slate-800 truncate">{conversation.name}</h3>
+                    <span className="text-xs text-slate-500">{conversation.timestamp}</span>
+                  </div>
+                  <p className="text-sm text-slate-600 truncate mb-1">{conversation.lastMessage}</p>
+                  <div className="flex items-center justify-between">
+                    <Badge 
+                      variant="secondary" 
+                      className={`text-xs ${
+                        conversation.role === 'scout' ? 'bg-green-100 text-green-600' :
+                        conversation.role === 'fan' ? 'bg-purple-100 text-purple-600' :
+                        'bg-blue-100 text-blue-600'
+                      }`}
+                    >
+                      {conversation.role}
+                    </Badge>
+                    {conversation.unread > 0 && (
+                      <Badge className="bg-purple-500 text-white text-xs px-2 py-1">
+                        {conversation.unread}
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Chat Area */}
+      <div className="flex-1 flex flex-col">
+        {selectedChat ? (
+          <>
+            {/* Chat Header */}
+            <div className="p-6 bg-white/80 backdrop-blur-xl border-b border-purple-100">
+              <div className="flex items-center space-x-4">
+                <Avatar className="w-12 h-12">
+                  <AvatarFallback className={`${
+                    selectedChat.role === 'scout' ? 'bg-green-100 text-green-600' :
+                    selectedChat.role === 'fan' ? 'bg-purple-100 text-purple-600' :
+                    'bg-blue-100 text-blue-600'
+                  } font-semibold`}>
+                    {selectedChat.avatar}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <h2 className="text-xl font-semibold text-slate-800">{selectedChat.name}</h2>
+                  <div className="flex items-center space-x-2">
+                    <Badge 
+                      variant="secondary" 
+                      className={`text-xs ${
+                        selectedChat.role === 'scout' ? 'bg-green-100 text-green-600' :
+                        selectedChat.role === 'fan' ? 'bg-purple-100 text-purple-600' :
+                        'bg-blue-100 text-blue-600'
+                      }`}
+                    >
+                      {selectedChat.role}
+                    </Badge>
+                    {selectedChat.online && (
+                      <span className="text-sm text-green-600 flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-1"></div>
+                        Online
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Messages */}
+            <div className="flex-1 p-6 overflow-y-auto space-y-4">
+              {mockMessages.map((message) => (
+                <div 
+                  key={message.id} 
+                  className={`flex ${message.isOwn ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div 
+                    className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
+                      message.isOwn 
+                        ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white' 
+                        : 'bg-white shadow-lg text-slate-800'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <p className={`text-xs mt-1 ${
+                      message.isOwn ? 'text-purple-100' : 'text-slate-500'
+                    }`}>
+                      {message.timestamp}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Message Input */}
+            <div className="p-6 bg-white/80 backdrop-blur-xl border-t border-purple-100">
+              <div className="flex items-center space-x-4">
+                <Button variant="ghost" size="sm" className="text-slate-500 hover:text-purple-600">
+                  <Camera className="h-5 w-5" />
+                </Button>
+                <Input 
+                  placeholder="Type your message..."
+                  value={messageText}
+                  onChange={(e) => setMessageText(e.target.value)}
+                  className="flex-1 focus:ring-purple-500 focus:border-purple-500"
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      sendMessage();
+                    }
+                  }}
+                />
+                <Button 
+                  onClick={sendMessage}
+                  className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white"
+                >
+                  <Send className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="flex-1 flex items-center justify-center">
+            <div className="text-center">
+              <MessageCircle className="h-16 w-16 text-slate-400 mx-auto mb-4" />
+              <h2 className="text-2xl font-semibold text-slate-600 mb-2">Select a Conversation</h2>
+              <p className="text-slate-500">Choose a conversation from the sidebar to start messaging</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 const LandingPage = () => {
   const navigate = useNavigate();
 
