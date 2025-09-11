@@ -1875,6 +1875,7 @@ const Feed = () => {
   const [newComment, setNewComment] = useState({});
   const { user } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPosts();
