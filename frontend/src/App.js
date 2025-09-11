@@ -2226,9 +2226,17 @@ const ProfileDashboard = () => {
   );
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      {user?.role === 'athlete' ? <AthleteProfile /> : user?.role === 'scout' ? <ScoutProfile /> : <AthleteProfile />}
-    </div>
+    <>
+      <div className="max-w-4xl mx-auto p-4">
+        {user?.role === 'athlete' ? <AthleteProfile /> : user?.role === 'scout' ? <ScoutProfile /> : <AthleteProfile />}
+      </div>
+      <EditProfileModal 
+        user={user}
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        onUpdate={handleProfileUpdate}
+      />
+    </>
   );
 };
 
