@@ -726,11 +726,11 @@ const LandingPage = () => {
             </div>
           </div>
           
-          <div className="flex items-center space-x-6">
-            <Button variant="ghost" className="text-slate-700 hover:text-purple-600 hover:bg-purple-50">
+          <div className="hidden md:flex items-center space-x-6">
+            <Button variant="ghost" className="text-slate-700 hover:text-purple-600 hover:bg-purple-50" onClick={() => navigate('/about')}>
               About
             </Button>
-            <Button variant="ghost" className="text-slate-700 hover:text-purple-600 hover:bg-purple-50">
+            <Button variant="ghost" className="text-slate-700 hover:text-purple-600 hover:bg-purple-50" onClick={() => navigate('/features')}>
               Features
             </Button>
             <Button variant="ghost" className="text-slate-700 hover:text-purple-600 hover:bg-purple-50">
