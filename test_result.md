@@ -261,7 +261,6 @@ test_plan:
     - "Create Messages page"
     - "Enhanced feed with relevant images"
     - "Create edit profile functionality"
-    - "Create user profile update endpoints"
   stuck_tasks: []
   test_all: true
   test_priority: "high_first"
