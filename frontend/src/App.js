@@ -1947,8 +1947,14 @@ const EditProfileModal = ({ user, isOpen, onClose, onUpdate }) => {
 
 // Profile Dashboard Component
 const ProfileDashboard = () => {
-  const { user } = useAuth();
+  const { user, login } = useAuth();
   const navigate = useNavigate();
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const handleProfileUpdate = (updatedUser) => {
+    // Update the user in the auth context
+    login({ user: updatedUser, access_token: localStorage.getItem('token'), token_type: 'bearer' });
+  };
 
   const AthleteProfile = () => (
     <div className="space-y-6">
