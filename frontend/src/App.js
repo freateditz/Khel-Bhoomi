@@ -458,30 +458,33 @@ const AuthPage = () => {
               Quick Demo Access
             </h3>
             <div className="grid grid-cols-1 gap-2 text-xs">
-              <div className="flex justify-between items-center p-2 bg-white/60 rounded-lg">
+              <div className="flex justify-between items-center p-2 bg-white/60 rounded-lg hover:bg-white/80 transition-colors cursor-pointer" 
+                   onClick={() => fillDemoCredentials('demo_athlete', 'demo123')}>
                 <span className="font-medium text-slate-600">👤 Athlete:</span>
                 <div className="text-right">
-                  <div className="text-purple-600 font-mono">demo_athlete</div>
+                  <div className="text-purple-600 font-mono hover:text-purple-700">demo_athlete</div>
                   <div className="text-slate-500">demo123</div>
                 </div>
               </div>
-              <div className="flex justify-between items-center p-2 bg-white/60 rounded-lg">
+              <div className="flex justify-between items-center p-2 bg-white/60 rounded-lg hover:bg-white/80 transition-colors cursor-pointer"
+                   onClick={() => fillDemoCredentials('demo_scout', 'demo123')}>
                 <span className="font-medium text-slate-600">🎯 Scout:</span>
                 <div className="text-right">
-                  <div className="text-purple-600 font-mono">demo_scout</div>
+                  <div className="text-purple-600 font-mono hover:text-purple-700">demo_scout</div>
                   <div className="text-slate-500">demo123</div>
                 </div>
               </div>
-              <div className="flex justify-between items-center p-2 bg-white/60 rounded-lg">
+              <div className="flex justify-between items-center p-2 bg-white/60 rounded-lg hover:bg-white/80 transition-colors cursor-pointer"
+                   onClick={() => fillDemoCredentials('demo_fan', 'demo123')}>
                 <span className="font-medium text-slate-600">❤️ Fan:</span>
                 <div className="text-right">
-                  <div className="text-purple-600 font-mono">demo_fan</div>
+                  <div className="text-purple-600 font-mono hover:text-purple-700">demo_fan</div>
                   <div className="text-slate-500">demo123</div>
                 </div>
               </div>
             </div>
             <p className="text-xs text-purple-600 mt-2 text-center">
-              Click any username to auto-fill the login form
+              Click any account to auto-fill login credentials
             </p>
           </div>
 
