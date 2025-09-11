@@ -273,6 +273,7 @@ test_plan:
     - "Create Messages page"
     - "Enhanced feed with relevant images"
     - "Create edit profile functionality"
+    - "Create individual user profile viewing functionality"
   stuck_tasks: []
   test_all: true
   test_priority: "high_first"
