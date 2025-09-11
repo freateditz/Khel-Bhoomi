@@ -427,6 +427,388 @@ const AboutPage = () => {
   );
 };
 
+// Individual User Profile Page Component
+const UserProfilePage = () => {
+  const { username } = useParams();
+  const { user: currentUser } = useAuth();
+  const navigate = useNavigate();
+  const [profileUser, setProfileUser] = useState(null);
+  const [userPosts, setUserPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [following, setFollowing] = useState(false);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (username) {
+      fetchUserProfile();
+      fetchUserPosts();
+    }
+  }, [username]);
+
+  const fetchUserProfile = async () => {
+    try {
+      const response = await axios.get(`${API}/users/${username}`);
+      setProfileUser(response.data);
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      toast({
+        title: "Error",
+        description: "User not found",
+        variant: "destructive"
+      });
+      navigate('/dashboard');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchUserPosts = async () => {
+    try {
+      const allPostsResponse = await axios.get(`${API}/posts`);
+      // Filter posts by username since we don't have user_id based endpoint yet
+      const filteredPosts = allPostsResponse.data.filter(post => post.username === username);
+      setUserPosts(filteredPosts);
+    } catch (error) {
+      console.error('Error fetching user posts:', error);
+    }
+  };
+
+  const toggleFollow = () => {
+    setFollowing(!following);
+    toast({
+      title: following ? "Unfollowed" : "Following!",
+      description: `You are ${following ? 'no longer following' : 'now following'} ${profileUser?.full_name || username}`
+    });
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-violet-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Trophy className="h-8 w-8 text-white animate-pulse" />
+          </div>
+          <p className="text-slate-600 font-medium">Loading profile...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!profileUser) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-violet-100 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-slate-800 mb-4">User Not Found</h1>
+          <Button onClick={() => navigate('/dashboard')}>Back to Dashboard</Button>
+        </div>
+      </div>
+    );
+  }
+
+  const getRoleColor = (role) => {
+    switch (role) {
+      case 'athlete': return 'bg-blue-100 text-blue-700 border-blue-200';
+      case 'scout': return 'bg-green-100 text-green-700 border-green-200';
+      case 'fan': return 'bg-purple-100 text-purple-700 border-purple-200';
+      default: return 'bg-gray-100 text-gray-700 border-gray-200';
+    }
+  };
+
+  const getRoleIcon = (role) => {
+    switch (role) {
+      case 'athlete': return <Medal className="h-4 w-4" />;
+      case 'scout': return <Target className="h-4 w-4" />;
+      case 'fan': return <Heart className="h-4 w-4" />;
+      default: return null;
+    }
+  };
+
+  const isOwnProfile = currentUser?.username === username;
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-violet-100">
+      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      
+      {/* Navigation */}
+      <nav className="relative z-10 bg-white/80 backdrop-blur-xl border-b border-purple-100/50 shadow-lg">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-4">
+              <Button variant="ghost" onClick={() => navigate('/dashboard')}>
+                ← Back to Feed
+              </Button>
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl shadow-lg">
+                  <Trophy className="h-6 w-6 text-white" />
+                </div>
+                <span className="text-lg font-semibold text-slate-800">Khel Bhoomi</span>
+              </div>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <Button variant="ghost" onClick={() => navigate('/messages')}>
+                <MessageCircle className="h-4 w-4 mr-2" />
+                Messages
+              </Button>
+              <Avatar className="h-8 w-8">
+                <AvatarFallback className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold">
+                  {currentUser?.full_name?.charAt(0) || currentUser?.username?.charAt(0)}
+                </AvatarFallback>
+              </Avatar>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Profile Content */}
+      <div className="relative z-10 container mx-auto px-4 py-8 max-w-5xl">
+        {/* Profile Header */}
+        <Card className="glass-card border-0 shadow-xl mb-8">
+          <CardContent className="p-8">
+            <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 md:space-x-8">
+              {/* Profile Image */}
+              <div className="relative">
+                <Avatar className="w-32 h-32">
+                  {profileUser.profile_image ? (
+                    <img src={profileUser.profile_image} alt={profileUser.full_name} className="w-full h-full object-cover" />
+                  ) : (
+                    <AvatarFallback className={`text-3xl font-bold text-white ${
+                      profileUser.role === 'athlete' ? 'bg-gradient-to-r from-blue-500 to-cyan-500' :
+                      profileUser.role === 'scout' ? 'bg-gradient-to-r from-green-500 to-emerald-500' :
+                      'bg-gradient-to-r from-purple-500 to-pink-500'
+                    }`}>
+                      {profileUser.full_name?.charAt(0) || profileUser.username?.charAt(0)}
+                    </AvatarFallback>
+                  )}
+                </Avatar>
+                {/* Online Status (mock) */}
+                <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white"></div>
+              </div>
+
+              {/* Profile Info */}
+              <div className="flex-1">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                  <div>
+                    <h1 className="text-3xl font-bold text-slate-800 mb-2">
+                      {profileUser.full_name || profileUser.username}
+                    </h1>
+                    <div className="flex items-center space-x-3 mb-3">
+                      <Badge className={`border ${getRoleColor(profileUser.role)}`}>
+                        <span className="flex items-center space-x-1">
+                          {getRoleIcon(profileUser.role)}
+                          <span className="capitalize font-semibold">{profileUser.role}</span>
+                        </span>
+                      </Badge>
+                      <span className="text-slate-500">@{profileUser.username}</span>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex items-center space-x-3">
+                    {!isOwnProfile && (
+                      <>
+                        <Button 
+                          onClick={toggleFollow}
+                          className={following ? 
+                            "border-purple-200 text-purple-600 hover:bg-purple-50" : 
+                            "bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white"
+                          }
+                          variant={following ? "outline" : "default"}
+                        >
+                          {following ? (
+                            <>
+                              <UserCheck className="h-4 w-4 mr-2" />
+                              Following
+                            </>
+                          ) : (
+                            <>
+                              <Users className="h-4 w-4 mr-2" />
+                              Follow
+                            </>
+                          )}
+                        </Button>
+                        <Button variant="outline" onClick={() => navigate('/messages')}>
+                          <MessageCircle className="h-4 w-4 mr-2" />
+                          Message
+                        </Button>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Bio */}
+                <p className="text-slate-600 text-lg mb-4 leading-relaxed">
+                  {profileUser.bio || "This user hasn't added a bio yet."}
+                </p>
+
+                {/* Stats Row */}
+                <div className="flex items-center space-x-8 text-sm">
+                  <div className="text-center">
+                    <div className="font-bold text-slate-800">{userPosts.length}</div>
+                    <div className="text-slate-500">Posts</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-bold text-slate-800">
+                      {Math.floor(Math.random() * 1000) + 100}
+                    </div>
+                    <div className="text-slate-500">Followers</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-bold text-slate-800">
+                      {Math.floor(Math.random() * 500) + 50}
+                    </div>
+                    <div className="text-slate-500">Following</div>
+                  </div>
+                  <div className="flex items-center space-x-1 text-slate-500">
+                    <Calendar className="h-4 w-4" />
+                    <span>Joined {new Date(profileUser.created_at).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}</span>
+                  </div>
+                </div>
+
+                {/* Sports Interests */}
+                {profileUser.sports_interests && profileUser.sports_interests.length > 0 && (
+                  <div className="mt-4">
+                    <h3 className="text-sm font-semibold text-slate-700 mb-2">Sports Interests</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {profileUser.sports_interests.map((sport, index) => (
+                        <Badge key={index} variant="secondary" className="bg-purple-100 text-purple-600">
+                          {sport}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Posts Section */}
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold text-slate-800">
+              Posts by {profileUser.full_name || profileUser.username}
+            </h2>
+            <Badge variant="secondary" className="bg-slate-100 text-slate-600">
+              {userPosts.length} {userPosts.length === 1 ? 'Post' : 'Posts'}
+            </Badge>
+          </div>
+
+          {userPosts.length > 0 ? (
+            <div className="space-y-6">
+              {userPosts.map((post) => (
+                <Card key={post.id} className="glass-card border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <CardContent className="p-0">
+                    {/* Post Header */}
+                    <div className="p-6 pb-4">
+                      <div className="flex items-start space-x-4">
+                        <Avatar className="w-12 h-12">
+                          {profileUser.profile_image ? (
+                            <img src={profileUser.profile_image} alt={profileUser.full_name} />
+                          ) : (
+                            <AvatarFallback className={`font-semibold text-white ${
+                              profileUser.role === 'athlete' ? 'bg-blue-500' :
+                              profileUser.role === 'scout' ? 'bg-green-500' :
+                              'bg-purple-500'
+                            }`}>
+                              {profileUser.username?.charAt(0)}
+                            </AvatarFallback>
+                          )}
+                        </Avatar>
+                        
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2 mb-1">
+                            <h4 className="font-semibold text-slate-800 text-lg">{profileUser.full_name || profileUser.username}</h4>
+                            <Badge className={`text-xs px-2 py-1 border ${getRoleColor(profileUser.role)}`}>
+                              <span className="flex items-center space-x-1">
+                                {getRoleIcon(profileUser.role)}
+                                <span className="capitalize">{profileUser.role}</span>
+                              </span>
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-slate-500">
+                            {new Date(post.created_at).toLocaleDateString('en-IN', {
+                              day: 'numeric',
+                              month: 'short',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Post Content */}
+                    <div className="px-6 pb-4">
+                      <p className="text-slate-700 text-lg leading-relaxed mb-4">{post.content}</p>
+                      
+                      {post.image_url && (
+                        <div className="mb-4 rounded-xl overflow-hidden">
+                          <img 
+                            src={post.image_url} 
+                            alt="Post content" 
+                            className="w-full h-auto max-h-96 object-cover"
+                          />
+                        </div>
+                      )}
+                      
+                      {post.sports_tags && post.sports_tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {post.sports_tags.map((tag, index) => (
+                            <Badge key={index} variant="secondary" className="text-xs bg-purple-100 text-purple-600 hover:bg-purple-200 cursor-pointer">
+                              #{tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Post Actions */}
+                    <div className="border-t border-slate-100 p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-6">
+                          <Button variant="ghost" size="sm" className="hover:text-red-500 hover:bg-red-50 transition-colors">
+                            <Heart className="h-5 w-5 mr-2" />
+                            <span className="font-medium">{post.likes}</span>
+                          </Button>
+                          <Button variant="ghost" size="sm" className="hover:text-blue-500 hover:bg-blue-50 transition-colors">
+                            <MessageCircle className="h-5 w-5 mr-2" />
+                            <span className="font-medium">{post.comments}</span>
+                          </Button>
+                          <Button variant="ghost" size="sm" className="hover:text-green-500 hover:bg-green-50 transition-colors">
+                            <Share2 className="h-5 w-5 mr-2" />
+                            Share
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <Card className="glass-card border-0 shadow-lg">
+              <CardContent className="p-12 text-center">
+                <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Edit className="h-8 w-8 text-slate-400" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-800 mb-2">No posts yet</h3>
+                <p className="text-slate-600">
+                  {isOwnProfile ? 
+                    "You haven't created any posts yet. Share your sports journey!" :
+                    `${profileUser.full_name || profileUser.username} hasn't shared any posts yet.`
+                  }
+                </p>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Messages Page Component
 const MessagesPage = () => {
   const { user } = useAuth();
