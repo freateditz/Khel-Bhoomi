@@ -383,6 +383,18 @@ const AuthPage = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
+  const fillDemoCredentials = (username, password) => {
+    setFormData({
+      ...formData,
+      username: username,
+      password: password
+    });
+    toast({
+      title: "Demo credentials filled!",
+      description: `Ready to login as ${username}`,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
