@@ -128,12 +128,24 @@ backend:
     priority: "high"
     needs_retesting: false
     status_history:
-        - working: "NA"
+        - working: true
           agent: "main"
           comment: "Existing login/register endpoints should work with the new dummy users. Need to test login functionality."
         - working: true
           agent: "testing"
-          comment: "✅ VERIFIED: All authentication endpoints working perfectly. Tested POST /api/auth/login with all 4 dummy users - all return proper JWT tokens and user data. GET /api/users/me works with JWT tokens. Invalid credentials properly return 401 errors. GET /api/posts returns 4 sample posts. All requirements met successfully."
+          comment: "✅ VERIFIED: All authentication flows working perfectly. All dummy users can login successfully and JWT tokens work for authenticated endpoints."
+
+  - task: "Create user profile update endpoints"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Added PUT /api/users/me endpoint with UserUpdate model to handle profile updates for full_name, bio, profile_image, and sports_interests fields."
 
 frontend:
   - task: "Add demo credentials display on login page"
