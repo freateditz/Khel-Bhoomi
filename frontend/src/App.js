@@ -2018,7 +2018,12 @@ const Feed = () => {
                   
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-1">
-                      <h4 className="font-semibold text-slate-800 text-lg">{post.username}</h4>
+                      <h4 
+                        className="font-semibold text-slate-800 text-lg hover:text-purple-600 cursor-pointer transition-colors" 
+                        onClick={() => navigate(`/profile/${post.username}`)}
+                      >
+                        {post.username}
+                      </h4>
                       <Badge className={`text-xs px-2 py-1 border ${getRoleColor(post.user_role)}`}>
                         <span className="flex items-center space-x-1">
                           {getRoleIcon(post.user_role)}
