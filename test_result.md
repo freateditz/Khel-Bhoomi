@@ -247,6 +247,18 @@ frontend:
           agent: "main"
           comment: "Created complete edit profile modal with form validation, sports interests management, profile image upload, and real-time updates. Connected to backend API."
 
+  - task: "Create individual user profile viewing functionality"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Created comprehensive UserProfilePage component that displays user's personal details, all their posts, achievements, follow/unfollow functionality, and stats. Made usernames and avatars clickable in feed and comments to navigate to individual profiles. Added /profile/:username route."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
