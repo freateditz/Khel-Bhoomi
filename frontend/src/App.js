@@ -2791,6 +2791,14 @@ function App() {
                 </ProtectedRoute>
               } 
             />
+            <Route 
+              path="/profile/:username" 
+              element={
+                <ProtectedRoute>
+                  <UserProfilePage />
+                </ProtectedRoute>
+              } 
+            />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>
