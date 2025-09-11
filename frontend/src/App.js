@@ -2136,13 +2136,18 @@ const Feed = () => {
                     {/* Sample Comments */}
                     <div className="space-y-3">
                       <div className="flex items-start space-x-3">
-                        <Avatar className="w-8 h-8">
+                        <Avatar className="w-8 h-8 cursor-pointer hover:opacity-80 transition-opacity" onClick={() => navigate('/profile/sports_fan_123')}>
                           <AvatarFallback className="bg-blue-100 text-blue-600 text-sm">S</AvatarFallback>
                         </Avatar>
                         <div className="flex-1">
                           <div className="bg-slate-50 rounded-lg p-3">
                             <div className="flex items-center space-x-2 mb-1">
-                              <span className="font-semibold text-sm">sports_fan_123</span>
+                              <span 
+                                className="font-semibold text-sm hover:text-purple-600 cursor-pointer transition-colors"
+                                onClick={() => navigate('/profile/sports_fan_123')}
+                              >
+                                sports_fan_123
+                              </span>
                               <Badge className="text-xs bg-purple-100 text-purple-600 border-purple-200">Fan</Badge>
                             </div>
                             <p className="text-sm text-slate-700">Great performance! Keep it up! 🔥</p>
