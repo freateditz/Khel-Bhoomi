@@ -439,6 +439,40 @@ const AuthPage = () => {
         </CardHeader>
 
         <CardContent>
+          {/* Demo Login Credentials Section */}
+          <div className="mb-6 p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl border border-purple-100">
+            <h3 className="text-sm font-semibold text-purple-700 mb-3 flex items-center">
+              <Trophy className="h-4 w-4 mr-2" />
+              Quick Demo Access
+            </h3>
+            <div className="grid grid-cols-1 gap-2 text-xs">
+              <div className="flex justify-between items-center p-2 bg-white/60 rounded-lg">
+                <span className="font-medium text-slate-600">👤 Athlete:</span>
+                <div className="text-right">
+                  <div className="text-purple-600 font-mono">demo_athlete</div>
+                  <div className="text-slate-500">demo123</div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center p-2 bg-white/60 rounded-lg">
+                <span className="font-medium text-slate-600">🎯 Scout:</span>
+                <div className="text-right">
+                  <div className="text-purple-600 font-mono">demo_scout</div>
+                  <div className="text-slate-500">demo123</div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center p-2 bg-white/60 rounded-lg">
+                <span className="font-medium text-slate-600">❤️ Fan:</span>
+                <div className="text-right">
+                  <div className="text-purple-600 font-mono">demo_fan</div>
+                  <div className="text-slate-500">demo123</div>
+                </div>
+              </div>
+            </div>
+            <p className="text-xs text-purple-600 mt-2 text-center">
+              Click any username to auto-fill the login form
+            </p>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="username" className="text-slate-700">Username</Label>
@@ -449,6 +483,7 @@ const AuthPage = () => {
                 onChange={(e) => setFormData({...formData, username: e.target.value})}
                 required
                 className="mt-1 focus:ring-purple-500 focus:border-purple-500"
+                placeholder="Enter username or use demo accounts above"
               />
             </div>
 
