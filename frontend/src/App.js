@@ -311,21 +311,21 @@ const LandingPage = () => {
             <div className="mb-16">
               <div className="text-center mb-12">
                 <h2 className="text-4xl font-bold text-slate-800 mb-4">Sports We Love</h2>
-                <p className="text-xl text-slate-600">From grassroots to professional level</p>
+                <p className="text-xl text-slate-600">From grassroots to professional level across India</p>
               </div>
               
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="glass-card overflow-hidden group cursor-pointer">
                   <div className="relative">
                     <img 
-                      src="https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHxhdGhsZXRlfGVufDB8fHx8MTc1NzUzMTYxMnww&ixlib=rb-4.1.0&q=85" 
-                      alt="Elite Basketball" 
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                      src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHw3fHxjcmlja2V0fGVufDB8fHx8MTc1NzUzMTYxMnww&ixlib=rb-4.1.0&q=85" 
+                      alt="Cricket - India's Passion" 
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold mb-1">Basketball</h3>
-                      <p className="text-sm opacity-90">High-performance training</p>
+                      <h3 className="text-lg font-bold mb-1">Cricket</h3>
+                      <p className="text-xs opacity-90">India's heartbeat sport</p>
                     </div>
                   </div>
                 </div>
@@ -333,14 +333,14 @@ const LandingPage = () => {
                 <div className="glass-card overflow-hidden group cursor-pointer">
                   <div className="relative">
                     <img 
-                      src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwxfHxhdGhsZXRlfGVufDB8fHx8MTc1NzUzMTYxMnww&ixlib=rb-4.1.0&q=85" 
-                      alt="Track and Field" 
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                      src="https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHxhdGhsZXRlfGVufDB8fHx8MTc1NzUzMTYxMnww&ixlib=rb-4.1.0&q=85" 
+                      alt="Elite Basketball" 
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold mb-1">Track & Field</h3>
-                      <p className="text-sm opacity-90">Athletic excellence</p>
+                      <h3 className="text-lg font-bold mb-1">Basketball</h3>
+                      <p className="text-xs opacity-90">High-performance training</p>
                     </div>
                   </div>
                 </div>
@@ -350,14 +350,198 @@ const LandingPage = () => {
                     <img 
                       src="https://images.unsplash.com/photo-1697767394715-75e8183e85bb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwxfHxzcG9ydHMlMjBjb21tdW5pdHl8ZW58MHx8fHwxNzU3NTMxNjA1fDA&ixlib=rb-4.1.0&q=85" 
                       alt="Football Community" 
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold mb-1">Football</h3>
-                      <p className="text-sm opacity-90">Global sport, local community</p>
+                      <h3 className="text-lg font-bold mb-1">Football</h3>
+                      <p className="text-xs opacity-90">Global sport, local community</p>
                     </div>
                   </div>
+                </div>
+
+                <div className="glass-card overflow-hidden group cursor-pointer">
+                  <div className="relative">
+                    <img 
+                      src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwxfHxhdGhsZXRlfGVufDB8fHx8MTc1NzUzMTYxMnww&ixlib=rb-4.1.0&q=85" 
+                      alt="Track and Field" 
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-lg font-bold mb-1">Track & Field</h3>
+                      <p className="text-xs opacity-90">Athletic excellence</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="glass-card overflow-hidden group cursor-pointer">
+                  <div className="relative">
+                    <img 
+                      src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHw0fHx0ZW5uaXN8ZW58MHx8fHwxNzU3NTMxNjEyfDA&ixlib=rb-4.1.0&q=85" 
+                      alt="Tennis" 
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-lg font-bold mb-1">Tennis</h3>
+                      <p className="text-xs opacity-90">Precision and power</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="glass-card overflow-hidden group cursor-pointer">
+                  <div className="relative">
+                    <img 
+                      src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHw2fHxzd2ltbWluZ3xlbnwwfHx8fDE3NTc1MzE2MTJ8MA&ixlib=rb-4.1.0&q=85" 
+                      alt="Swimming" 
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-lg font-bold mb-1">Swimming</h3>
+                      <p className="text-xs opacity-90">Aquatic excellence</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="glass-card overflow-hidden group cursor-pointer">
+                  <div className="relative">
+                    <img 
+                      src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwzfHxiYWRtaW50b258ZW58MHx8fHwxNzU3NTMxNjEyfDA&ixlib=rb-4.1.0&q=85" 
+                      alt="Badminton" 
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-lg font-bold mb-1">Badminton</h3>
+                      <p className="text-xs opacity-90">Speed and agility</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="glass-card overflow-hidden group cursor-pointer">
+                  <div className="relative">
+                    <img 
+                      src="https://images.unsplash.com/photo-1578068121672-729c25d5d2b4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwxfHxob2NrZXl8ZW58MHx8fHwxNzU3NTMxNjEyfDA&ixlib=rb-4.1.0&q=85" 
+                      alt="Hockey" 
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-lg font-bold mb-1">Hockey</h3>
+                      <p className="text-xs opacity-90">India's national sport</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Success Stories Section */}
+            <div className="mb-16">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-slate-800 mb-4">Success Stories</h2>
+                <p className="text-xl text-slate-600">Athletes discovered through our platform</p>
+              </div>
+              
+              <div className="grid md:grid-cols-3 gap-8">
+                <Card className="glass-card border-0 shadow-xl">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <Avatar className="w-20 h-20 mx-auto mb-4">
+                        <AvatarFallback className="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xl">RK</AvatarFallback>
+                      </Avatar>
+                      <h3 className="text-xl font-bold text-slate-800 mb-2">Rajesh Kumar</h3>
+                      <Badge className="bg-blue-100 text-blue-700 mb-4">Basketball Athlete</Badge>
+                      <p className="text-slate-600 mb-4">"Khel Bhoomi connected me with professional scouts. Now I'm playing in the national league!"</p>
+                      <div className="flex justify-center">
+                        <Badge variant="secondary" className="bg-yellow-100 text-yellow-600">
+                          <Trophy className="h-3 w-3 mr-1" />
+                          National Player
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="glass-card border-0 shadow-xl">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <Avatar className="w-20 h-20 mx-auto mb-4">
+                        <AvatarFallback className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xl">PS</AvatarFallback>
+                      </Avatar>
+                      <h3 className="text-xl font-bold text-slate-800 mb-2">Priya Sharma</h3>
+                      <Badge className="bg-green-100 text-green-700 mb-4">Track & Field</Badge>
+                      <p className="text-slate-600 mb-4">"The exposure I got here helped me get into the Olympic training program. Dreams do come true!"</p>
+                      <div className="flex justify-center">
+                        <Badge variant="secondary" className="bg-yellow-100 text-yellow-600">
+                          <Medal className="h-3 w-3 mr-1" />
+                          Olympic Trainee
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="glass-card border-0 shadow-xl">
+                  <CardContent className="p-6">
+                    <div className="text-center">
+                      <Avatar className="w-20 h-20 mx-auto mb-4">
+                        <AvatarFallback className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xl">AV</AvatarFallback>
+                      </Avatar>
+                      <h3 className="text-xl font-bold text-slate-800 mb-2">Arjun Verma</h3>
+                      <Badge className="bg-purple-100 text-purple-700 mb-4">Cricket</Badge>
+                      <p className="text-slate-600 mb-4">"From a small town to IPL trials - Khel Bhoomi made it possible by connecting me with the right people!"</p>
+                      <div className="flex justify-center">
+                        <Badge variant="secondary" className="bg-yellow-100 text-yellow-600">
+                          <Star className="h-3 w-3 mr-1" />
+                          IPL Prospect
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* Features Preview Section */}
+            <div className="mb-16">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-slate-800 mb-4">Why Choose Khel Bhoomi?</h2>
+                <p className="text-xl text-slate-600">Everything you need to excel in sports</p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <Search className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-800 mb-2">Talent Discovery</h3>
+                  <p className="text-slate-600">Connect with scouts and get discovered by professional teams</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <Users className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-800 mb-2">Community</h3>
+                  <p className="text-slate-600">Join India's largest sports community and network</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <TrendingUp className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-800 mb-2">Performance Tracking</h3>
+                  <p className="text-slate-600">Track your progress and showcase achievements</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <MessageCircle className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-800 mb-2">Direct Messaging</h3>
+                  <p className="text-slate-600">Connect directly with athletes, scouts, and fans</p>
                 </div>
               </div>
             </div>
