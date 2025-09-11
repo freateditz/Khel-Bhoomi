@@ -547,6 +547,136 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
+
+        {/* Footer Section */}
+        <footer className="relative z-10 bg-gradient-to-r from-slate-900 to-slate-800 text-white">
+          <div className="container mx-auto px-6 py-16">
+            <div className="grid md:grid-cols-4 gap-8">
+              {/* Brand Column */}
+              <div className="col-span-1">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="p-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl shadow-lg">
+                    <Trophy className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                      Khel Bhoomi
+                    </h1>
+                    <p className="text-sm text-purple-300 font-medium">Sports Community</p>
+                  </div>
+                </div>
+                <p className="text-slate-300 mb-6 leading-relaxed">
+                  India's premier sports social platform connecting athletes, scouts, and fans. 
+                  Discover talent, celebrate achievements, and be part of the sports revolution.
+                </p>
+                <div className="flex space-x-4">
+                  <Button size="sm" variant="ghost" className="text-slate-300 hover:text-white hover:bg-slate-700">
+                    <Users className="h-4 w-4" />
+                  </Button>
+                  <Button size="sm" variant="ghost" className="text-slate-300 hover:text-white hover:bg-slate-700">
+                    <MessageCircle className="h-4 w-4" />
+                  </Button>
+                  <Button size="sm" variant="ghost" className="text-slate-300 hover:text-white hover:bg-slate-700">
+                    <Share2 className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Quick Links */}
+              <div>
+                <h3 className="text-lg font-semibold mb-6 text-white">Quick Links</h3>
+                <div className="space-y-3">
+                  <div>
+                    <button 
+                      className="text-slate-300 hover:text-purple-400 transition-colors text-left"
+                      onClick={() => navigate('/auth')}
+                    >
+                      Join Community
+                    </button>
+                  </div>
+                  <div>
+                    <button 
+                      className="text-slate-300 hover:text-purple-400 transition-colors text-left"
+                      onClick={() => navigate('/features')}
+                    >
+                      Features
+                    </button>
+                  </div>
+                  <div>
+                    <button 
+                      className="text-slate-300 hover:text-purple-400 transition-colors text-left"
+                      onClick={() => navigate('/about')}
+                    >
+                      About Us
+                    </button>
+                  </div>
+                  <div>
+                    <button 
+                      className="text-slate-300 hover:text-purple-400 transition-colors text-left"
+                      onClick={() => navigate('/auth')}
+                    >
+                      For Athletes
+                    </button>
+                  </div>
+                  <div>
+                    <button 
+                      className="text-slate-300 hover:text-purple-400 transition-colors text-left"
+                      onClick={() => navigate('/auth')}
+                    >
+                      For Scouts
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Sports Categories */}
+              <div>
+                <h3 className="text-lg font-semibold mb-6 text-white">Sports Categories</h3>
+                <div className="space-y-3">
+                  <div className="text-slate-300">Cricket</div>
+                  <div className="text-slate-300">Basketball</div>
+                  <div className="text-slate-300">Football</div>
+                  <div className="text-slate-300">Track & Field</div>
+                  <div className="text-slate-300">Tennis</div>
+                  <div className="text-slate-300">Badminton</div>
+                  <div className="text-slate-300">Hockey</div>
+                  <div className="text-slate-300">Swimming</div>
+                </div>
+              </div>
+
+              {/* Support & Info */}
+              <div>
+                <h3 className="text-lg font-semibold mb-6 text-white">Support & Info</h3>
+                <div className="space-y-3">
+                  <div className="text-slate-300">Help Center</div>
+                  <div className="text-slate-300">Privacy Policy</div>
+                  <div className="text-slate-300">Terms of Service</div>
+                  <div className="text-slate-300">Community Guidelines</div>
+                  <div className="text-slate-300">Contact Support</div>
+                  <div className="text-slate-300">Safety Center</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Footer */}
+            <div className="border-t border-slate-700 pt-8 mt-12">
+              <div className="flex flex-col md:flex-row justify-between items-center">
+                <div className="text-slate-400 text-sm mb-4 md:mb-0">
+                  © 2025 Khel Bhoomi. All rights reserved. Empowering Indian sports since 2025.
+                </div>
+                <div className="flex items-center space-x-6 text-sm text-slate-400">
+                  <span>Made with ❤️ for Indian Sports</span>
+                  <Badge className="bg-green-100 text-green-700">
+                    <span className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span>Live</span>
+                    </span>
+                  </Badge>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );
