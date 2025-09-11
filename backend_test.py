@@ -156,6 +156,147 @@ class KhelBhoomiAPITester:
         )
         return success
 
+    def test_update_profile_single_field(self, field_name, field_value):
+        """Test updating a single profile field"""
+        success, response = self.run_test(
+            f"Update Profile - {field_name}",
+            "PUT",
+            "users/me",
+            200,
+            data={field_name: field_value}
+        )
+        return success, response
+
+    def test_update_profile_multiple_fields(self, update_data):
+        """Test updating multiple profile fields at once"""
+        success, response = self.run_test(
+            "Update Profile - Multiple Fields",
+            "PUT",
+            "users/me",
+            200,
+            data=update_data
+        )
+        return success, response
+
+    def test_update_profile_empty_body(self):
+        """Test updating profile with empty request body"""
+        success, response = self.run_test(
+            "Update Profile - Empty Body",
+            "PUT",
+            "users/me",
+            400,
+            data={}
+        )
+        return success
+
+    def test_update_profile_invalid_token(self):
+        """Test updating profile with invalid JWT token"""
+        # Save current token
+        original_token = self.token
+        # Set invalid token
+        self.token = "invalid_token_123"
+        
+        success, response = self.run_test(
+            "Update Profile - Invalid Token",
+            "PUT",
+            "users/me",
+            401,
+            data={"full_name": "Should Fail"}
+        )
+        
+        # Restore original token
+        self.token = original_token
+        return success
+
+    def test_profile_update_flow(self):
+        """Test complete profile update flow"""
+        print(f"\n🔄 Testing Profile Update Flow")
+        print("-" * 40)
+        
+        # Test 1: Update full_name only
+        success, response = self.test_update_profile_single_field("full_name", "Updated Athlete Name")
+        if success:
+            print("✅ Successfully updated full_name")
+        else:
+            print("❌ Failed to update full_name")
+            return False
+
+        # Verify the update by getting current user
+        success, user_data = self.run_test("Verify full_name update", "GET", "users/me", 200)
+        if success and user_data.get('full_name') == "Updated Athlete Name":
+            print("✅ full_name update verified")
+        else:
+            print("❌ full_name update verification failed")
+
+        # Test 2: Update bio only
+        success, response = self.test_update_profile_single_field("bio", "I am a passionate athlete who loves cricket and football!")
+        if success:
+            print("✅ Successfully updated bio")
+        else:
+            print("❌ Failed to update bio")
+
+        # Verify bio update
+        success, user_data = self.run_test("Verify bio update", "GET", "users/me", 200)
+        if success and user_data.get('bio') == "I am a passionate athlete who loves cricket and football!":
+            print("✅ bio update verified")
+        else:
+            print("❌ bio update verification failed")
+
+        # Test 3: Update sports_interests only
+        sports_interests = ["Cricket", "Football", "Basketball", "Tennis"]
+        success, response = self.test_update_profile_single_field("sports_interests", sports_interests)
+        if success:
+            print("✅ Successfully updated sports_interests")
+        else:
+            print("❌ Failed to update sports_interests")
+
+        # Verify sports_interests update
+        success, user_data = self.run_test("Verify sports_interests update", "GET", "users/me", 200)
+        if success and user_data.get('sports_interests') == sports_interests:
+            print("✅ sports_interests update verified")
+        else:
+            print("❌ sports_interests update verification failed")
+
+        # Test 4: Update multiple fields at once
+        multiple_updates = {
+            "full_name": "Multi-Update Athlete",
+            "bio": "Updated bio with multiple fields",
+            "profile_image": "https://example.com/new-profile.jpg",
+            "sports_interests": ["Swimming", "Hockey", "Badminton"]
+        }
+        success, response = self.test_update_profile_multiple_fields(multiple_updates)
+        if success:
+            print("✅ Successfully updated multiple fields")
+        else:
+            print("❌ Failed to update multiple fields")
+
+        # Verify multiple fields update
+        success, user_data = self.run_test("Verify multiple fields update", "GET", "users/me", 200)
+        if success:
+            all_verified = True
+            for field, expected_value in multiple_updates.items():
+                if user_data.get(field) != expected_value:
+                    print(f"❌ {field} update verification failed")
+                    all_verified = False
+            if all_verified:
+                print("✅ All multiple fields update verified")
+        else:
+            print("❌ Multiple fields update verification failed")
+
+        # Test 5: Empty request body (should fail)
+        if self.test_update_profile_empty_body():
+            print("✅ Empty body correctly rejected")
+        else:
+            print("❌ Empty body test failed")
+
+        # Test 6: Invalid JWT token (should fail)
+        if self.test_update_profile_invalid_token():
+            print("✅ Invalid token correctly rejected")
+        else:
+            print("❌ Invalid token test failed")
+
+        return True
+
 def main():
     print("🏏 Starting Khel Bhoomi API Tests")
     print("=" * 50)
