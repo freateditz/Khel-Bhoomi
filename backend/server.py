@@ -247,6 +247,39 @@ async def get_user_profile(username: str):
     user_data = parse_from_mongo(user_data)
     return User(**{k: v for k, v in user_data.items() if k != 'password'})
 
+@api_router.put("/users/me", response_model=User)
+async def update_user_profile(user_update: UserUpdate, current_user: User = Depends(get_current_user)):
+    # Prepare update data
+    update_data = {}
+    if user_update.full_name is not None:
+        update_data['full_name'] = user_update.full_name
+    if user_update.bio is not None:
+        update_data['bio'] = user_update.bio
+    if user_update.profile_image is not None:
+        update_data['profile_image'] = user_update.profile_image
+    if user_update.sports_interests is not None:
+        update_data['sports_interests'] = user_update.sports_interests
+    
+    if not update_data:
+        raise HTTPException(status_code=400, detail="No fields to update")
+    
+    # Update user in database
+    result = await db.users.update_one(
+        {"id": current_user.id}, 
+        {"$set": update_data}
+    )
+    
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Return updated user
+    updated_user_data = await db.users.find_one({"id": current_user.id})
+    if not updated_user_data:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    updated_user_data = parse_from_mongo(updated_user_data)
+    return User(**{k: v for k, v in updated_user_data.items() if k != 'password'})
+
 # Include the router in the main app
 app.include_router(api_router)
 
