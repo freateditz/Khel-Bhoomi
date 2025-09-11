@@ -2122,7 +2122,7 @@ const ProfileDashboard = () => {
                 </div>
               </div>
             </div>
-            <Button className="bg-purple-500 hover:bg-purple-600 text-white">
+            <Button className="bg-purple-500 hover:bg-purple-600 text-white" onClick={() => setIsEditModalOpen(true)}>
               <Edit className="h-4 w-4 mr-2" />
               Edit Profile
             </Button>
