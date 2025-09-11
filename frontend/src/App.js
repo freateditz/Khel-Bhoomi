@@ -1778,6 +1778,173 @@ const Feed = () => {
   );
 };
 
+// Edit Profile Modal Component
+const EditProfileModal = ({ user, isOpen, onClose, onUpdate }) => {
+  const [formData, setFormData] = useState({
+    full_name: user?.full_name || '',
+    bio: user?.bio || '',
+    profile_image: user?.profile_image || '',
+    sports_interests: user?.sports_interests || []
+  });
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        full_name: user.full_name || '',
+        bio: user.bio || '',
+        profile_image: user.profile_image || '',
+        sports_interests: user.sports_interests || []
+      });
+    }
+  }, [user]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await axios.put(`${API}/users/me`, formData);
+      onUpdate(response.data);
+      toast({
+        title: "Profile Updated!",
+        description: "Your profile has been successfully updated."
+      });
+      onClose();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.response?.data?.detail || "Failed to update profile",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const addSportsInterest = (sport) => {
+    if (!formData.sports_interests.includes(sport)) {
+      setFormData({
+        ...formData,
+        sports_interests: [...formData.sports_interests, sport]
+      });
+    }
+  };
+
+  const removeSportsInterest = (sport) => {
+    setFormData({
+      ...formData,
+      sports_interests: formData.sports_interests.filter(s => s !== sport)
+    });
+  };
+
+  const popularSports = ['Cricket', 'Basketball', 'Football', 'Tennis', 'Badminton', 'Swimming', 'Hockey', 'Track & Field'];
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <Card className="w-full max-w-2xl glass-card border-0 shadow-2xl">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="text-2xl font-bold text-slate-800">Edit Profile</CardTitle>
+              <CardDescription>Update your profile information</CardDescription>
+            </div>
+            <Button variant="ghost" size="sm" onClick={onClose}>
+              ✕
+            </Button>
+          </div>
+        </CardHeader>
+
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <Label htmlFor="full_name" className="text-slate-700 font-semibold">Full Name</Label>
+              <Input
+                id="full_name"
+                type="text"
+                value={formData.full_name}
+                onChange={(e) => setFormData({...formData, full_name: e.target.value})}
+                className="mt-2 focus:ring-purple-500 focus:border-purple-500"
+                placeholder="Enter your full name"
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="bio" className="text-slate-700 font-semibold">Bio</Label>
+              <Textarea
+                id="bio"
+                value={formData.bio}
+                onChange={(e) => setFormData({...formData, bio: e.target.value})}
+                className="mt-2 focus:ring-purple-500 focus:border-purple-500"
+                placeholder="Tell us about yourself, your achievements, and goals..."
+                rows={4}
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="profile_image" className="text-slate-700 font-semibold">Profile Image URL</Label>
+              <Input
+                id="profile_image"
+                type="url"
+                value={formData.profile_image}
+                onChange={(e) => setFormData({...formData, profile_image: e.target.value})}
+                className="mt-2 focus:ring-purple-500 focus:border-purple-500"
+                placeholder="https://example.com/image.jpg"
+              />
+              <p className="text-xs text-slate-500 mt-1">Upload an image and paste the URL here</p>
+            </div>
+
+            <div>
+              <Label className="text-slate-700 font-semibold">Sports Interests</Label>
+              <div className="mt-2 space-y-3">
+                <div className="flex flex-wrap gap-2">
+                  {formData.sports_interests.map((sport) => (
+                    <Badge 
+                      key={sport} 
+                      className="bg-purple-100 text-purple-700 hover:bg-purple-200 cursor-pointer"
+                      onClick={() => removeSportsInterest(sport)}
+                    >
+                      {sport} ✕
+                    </Badge>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {popularSports.filter(sport => !formData.sports_interests.includes(sport)).map((sport) => (
+                    <Badge 
+                      key={sport} 
+                      variant="outline" 
+                      className="cursor-pointer hover:bg-purple-50"
+                      onClick={() => addSportsInterest(sport)}
+                    >
+                      + {sport}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end space-x-4 pt-4 border-t border-slate-100">
+              <Button type="button" variant="ghost" onClick={onClose}>
+                Cancel
+              </Button>
+              <Button 
+                type="submit" 
+                className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white"
+                disabled={loading}
+              >
+                {loading ? 'Updating...' : 'Update Profile'}
+              </Button>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
 // Profile Dashboard Component
 const ProfileDashboard = () => {
   const { user } = useAuth();
