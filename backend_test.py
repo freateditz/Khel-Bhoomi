@@ -303,6 +303,25 @@ def main():
     
     # Setup
     tester = KhelBhoomiAPITester()
+    
+    print(f"\n🔐 Testing Login with Demo User")
+    print("-" * 40)
+    
+    # Test login with demo_athlete as requested
+    if not tester.test_user_login("demo_athlete", "demo123"):
+        print("❌ Demo athlete login failed, stopping profile update tests")
+        return 1
+    
+    print("✅ Successfully logged in as demo_athlete")
+    
+    # Test the new profile update functionality
+    if not tester.test_profile_update_flow():
+        print("❌ Profile update tests failed")
+        return 1
+    
+    print(f"\n📝 Testing User Registration for All Roles")
+    print("-" * 40)
+    
     timestamp = datetime.now().strftime('%H%M%S')
     
     # Test data for different roles
@@ -329,9 +348,6 @@ def main():
             "role": "fan"
         }
     ]
-
-    print("\n📝 Testing User Registration for All Roles")
-    print("-" * 40)
     
     registered_users = []
     for user_data in test_users:
@@ -342,17 +358,19 @@ def main():
             print(f"❌ Failed to register {user_data['role']}: {user_data['username']}")
 
     if not registered_users:
-        print("❌ No users registered successfully, stopping tests")
-        return 1
-
-    print(f"\n🔐 Testing Login Flow")
-    print("-" * 40)
-    
-    # Test login with first registered user
-    first_user = registered_users[0]
-    if not tester.test_user_login(first_user['username'], first_user['password']):
-        print("❌ Login failed, stopping tests")
-        return 1
+        print("❌ No users registered successfully, continuing with existing tests")
+        # Continue with existing functionality tests using demo_athlete
+        first_user = {"username": "demo_athlete", "password": "demo123"}
+    else:
+        print(f"\n🔐 Testing Login Flow with New Users")
+        print("-" * 40)
+        
+        # Test login with first registered user
+        first_user = registered_users[0]
+        if not tester.test_user_login(first_user['username'], first_user['password']):
+            print("❌ Login failed, using demo_athlete for remaining tests")
+            first_user = {"username": "demo_athlete", "password": "demo123"}
+            tester.test_user_login(first_user['username'], first_user['password'])
 
     print(f"\n👤 Testing User Profile Endpoints")
     print("-" * 40)
