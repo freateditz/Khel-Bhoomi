@@ -21,6 +21,7 @@ load_dotenv(ROOT_DIR / '.env')
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
+collection = db[os.environ.get('COLLECTION_NAME', 'Data')]
 
 # JWT and Password setup
 SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'your-secret-key-here')
