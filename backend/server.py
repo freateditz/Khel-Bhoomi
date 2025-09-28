@@ -153,18 +153,24 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
     return User(**user_data)
 
 def prepare_for_mongo(data):
+    """Convert datetime objects to ISO format for MongoDB storage"""
     if isinstance(data, dict):
+        prepared_data = {}
         for key, value in data.items():
             if isinstance(value, datetime):
-                data[key] = value.isoformat()
+                prepared_data[key] = value.isoformat()
+            else:
+                prepared_data[key] = value
+        return prepared_data
     return data
 
 def parse_from_mongo(item):
+    """Parse datetime fields from MongoDB"""
     if isinstance(item, dict):
         for key, value in item.items():
             if isinstance(value, str) and key.endswith('_at'):
                 try:
-                    item[key] = datetime.fromisoformat(value)
+                    item[key] = datetime.fromisoformat(value.replace('Z', '+00:00'))
                 except:
                     pass
     return item
