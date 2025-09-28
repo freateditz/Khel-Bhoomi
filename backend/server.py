@@ -213,7 +213,8 @@ async def create_post(post_data: PostCreate, current_user: User = Depends(get_cu
     )
     
     post_dict = prepare_for_mongo(post.dict())
-    await db.posts.insert_one(post_dict)
+    post_dict['type'] = 'post'  # Add type field for single collection
+    await collection.insert_one(post_dict)
     
     return post
 
