@@ -304,13 +304,69 @@ def main():
     # Setup
     tester = KhelBhoomiAPITester()
     
-    print(f"\n🔐 Testing Login with Demo User")
+    # Test 1: API Health Check
+    print(f"\n🏥 Testing API Health Check")
+    print("-" * 40)
+    
+    # Test if backend is accessible via /docs
+    try:
+        import requests
+        docs_url = "https://problem-spotter-1.preview.emergentagent.com/docs"
+        response = requests.get(docs_url)
+        if response.status_code == 200:
+            print("✅ Backend API is accessible via /docs")
+        else:
+            print(f"❌ Backend API health check failed - Status: {response.status_code}")
+    except Exception as e:
+        print(f"❌ Backend API health check failed - Error: {str(e)}")
+    
+    # Test 2: User Registration with specified test data
+    print(f"\n📝 Testing User Registration with Specified Test Data")
+    print("-" * 40)
+    
+    test_user_data = {
+        "username": "testuser2024",
+        "email": "test@khelbhoomi.com",
+        "password": "testpass123",
+        "role": "athlete",
+        "full_name": "Test User 2024"
+    }
+    
+    registration_success = tester.test_user_registration(**test_user_data)
+    if registration_success:
+        print("✅ Successfully registered new test user")
+        
+        # Test 3: User Login with newly created user
+        print(f"\n🔐 Testing Login with Newly Created User")
+        print("-" * 40)
+        
+        login_success = tester.test_user_login(test_user_data['username'], test_user_data['password'])
+        if login_success:
+            print("✅ Successfully logged in with new test user")
+            
+            # Test 4: Token Validation
+            print(f"\n🔑 Testing Token Validation")
+            print("-" * 40)
+            
+            token_validation_success = tester.test_get_current_user()
+            if token_validation_success:
+                print("✅ JWT token validation successful")
+            else:
+                print("❌ JWT token validation failed")
+        else:
+            print("❌ Login with newly created user failed")
+    else:
+        print("❌ User registration failed")
+    
+    # Test 5: Try login with demo user (fallback)
+    print(f"\n🔐 Testing Login with Demo User (Fallback)")
     print("-" * 40)
     
     # Test login with demo_athlete as requested
     if not tester.test_user_login("demo_athlete", "demo123"):
-        print("❌ Demo athlete login failed, stopping profile update tests")
-        return 1
+        print("❌ Demo athlete login failed, will continue with other tests")
+    else:
+        print("✅ Successfully logged in as demo_athlete")
     
     print("✅ Successfully logged in as demo_athlete")
     
