@@ -65,8 +65,12 @@ const AuthProvider = ({ children }) => {
     if (token) {
       // Set default authorization header
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      // Get user profile
-      fetchUserProfile();
+      // Get user profile only if user data is not already available
+      if (!user) {
+        fetchUserProfile();
+      } else {
+        setLoading(false);
+      }
     } else {
       setLoading(false);
     }
