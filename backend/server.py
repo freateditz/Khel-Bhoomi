@@ -125,7 +125,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
     
-    user_data = await db.users.find_one({"username": username})
+    user_data = await collection.find_one({"username": username, "type": "user"})
     if user_data is None:
         raise HTTPException(status_code=401, detail="User not found")
     
