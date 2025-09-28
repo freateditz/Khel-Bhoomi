@@ -266,8 +266,8 @@ async def update_user_profile(user_update: UserUpdate, current_user: User = Depe
         raise HTTPException(status_code=400, detail="No fields to update")
     
     # Update user in database
-    result = await db.users.update_one(
-        {"id": current_user.id}, 
+    result = await collection.update_one(
+        {"id": current_user.id, "type": "user"}, 
         {"$set": update_data}
     )
     
