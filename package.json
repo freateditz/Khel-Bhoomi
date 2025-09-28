@@ -1,0 +1,49 @@
+{
+  "name": "khel-bhoomi",
+  "version": "1.0.0",
+  "description": "A comprehensive sports social platform connecting athletes, scouts, and fans",
+  "main": "index.js",
+  "scripts": {
+    "setup": "python setup_local.py",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && source venv/bin/activate && uvicorn server:app --host 0.0.0.0 --port 8001 --reload",
+    "start:frontend": "cd frontend && npm start",
+    "start:dev": "./start.sh",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "test:backend": "cd backend && python -m pytest",
+    "test:frontend": "cd frontend && npm test",
+    "build:frontend": "cd frontend && npm run build",
+    "lint:backend": "cd backend && python -m flake8 .",
+    "lint:frontend": "cd frontend && npm run lint"
+  },
+  "keywords": [
+    "sports",
+    "social-platform",
+    "fastapi",
+    "react",
+    "mongodb",
+    "athletes",
+    "scouts",
+    "fans"
+  ],
+  "author": "Khel Bhoomi Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/khel-bhoomi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/khel-bhoomi/issues"
+  },
+  "homepage": "https://github.com/your-username/khel-bhoomi#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0",
+    "python": ">=3.8.0"
+  }
+}
