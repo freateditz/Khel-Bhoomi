@@ -241,7 +241,7 @@ async def get_current_user_profile(current_user: User = Depends(get_current_user
 
 @api_router.get("/users/{username}", response_model=User)
 async def get_user_profile(username: str):
-    user_data = await db.users.find_one({"username": username})
+    user_data = await collection.find_one({"username": username, "type": "user"})
     if not user_data:
         raise HTTPException(status_code=404, detail="User not found")
     
