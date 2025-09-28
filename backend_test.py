@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 class KhelBhoomiAPITester:
-    def __init__(self, base_url="https://authfix-3.preview.emergentagent.com/api"):
+    def __init__(self, base_url="https://env-config-4.preview.emergentagent.com/api"):
         self.base_url = base_url
         self.token = None
         self.tests_run = 0
@@ -311,7 +311,7 @@ def main():
     # Test if backend is accessible via /docs
     try:
         import requests
-        docs_url = "https://authfix-3.preview.emergentagent.com/docs"
+        docs_url = "https://env-config-4.preview.emergentagent.com/docs"
         response = requests.get(docs_url)
         if response.status_code == 200:
             print("✅ Backend API is accessible via /docs")

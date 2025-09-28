@@ -6,7 +6,7 @@ import json
 def test_auth_flow():
     """Test the complete authentication flow with demo users"""
     
-    base_url = "https://authfix-3.preview.emergentagent.com/api"
+    base_url = "https://env-config-4.preview.emergentagent.com/api"
     
     print("🔐 Testing Complete Authentication Flow")
     print("=" * 50)
@@ -32,7 +32,7 @@ def test_auth_flow():
     print("\n🏥 1. API Health Check")
     print("-" * 30)
     try:
-        response = requests.get("https://authfix-3.preview.emergentagent.com/docs")
+        response = requests.get("https://env-config-4.preview.emergentagent.com/docs")
         if response.status_code == 200:
             print("✅ Backend API accessible via /docs")
         else:
