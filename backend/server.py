@@ -176,10 +176,10 @@ def parse_from_mongo(item):
     return item
 
 # Authentication Routes
-@api_router.post("/auth/register", response_model=Token)
-async def register(user_data: UserCreate):
+@api_router.post("/auth/signup", response_model=Token)
+async def signup(user_data: UserCreate):
     # Check if user exists
-    existing_user = await collection.find_one({"$or": [{"username": user_data.username}, {"email": user_data.email}], "type": "user"})
+    existing_user = await users_collection.find_one({"$or": [{"username": user_data.username}, {"email": user_data.email}]})
     if existing_user:
         raise HTTPException(status_code=400, detail="Username or email already registered")
     
@@ -194,12 +194,38 @@ async def register(user_data: UserCreate):
         full_name=user_data.full_name
     )
     
+    # Save to users collection
     user_dict = user.dict()
     user_dict['password'] = hashed_password
-    user_dict['type'] = 'user'  # Add type field for single collection
     user_dict = prepare_for_mongo(user_dict)
+    await users_collection.insert_one(user_dict)
     
-    await collection.insert_one(user_dict)
+    # Save signup record
+    signup_record = SignupRecord(
+        username=user_data.username,
+        email=user_data.email,
+        role=user_data.role,
+        full_name=user_data.full_name
+    )
+    signup_dict = prepare_for_mongo(signup_record.dict())
+    await signup_collection.insert_one(signup_dict)
+    
+    # Create user profile
+    profile_data = {
+        "id": str(uuid.uuid4()),
+        "user_id": user.id,
+        "username": user.username,
+        "full_name": user.full_name,
+        "bio": "",
+        "profile_image": "",
+        "sports_interests": [],
+        "achievements": [],
+        "followers_count": 0,
+        "following_count": 0,
+        "posts_count": 0,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    await profile_collection.insert_one(profile_data)
     
     # Create access token
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
@@ -211,12 +237,21 @@ async def register(user_data: UserCreate):
 
 @api_router.post("/auth/login", response_model=Token)
 async def login(user_credentials: UserLogin):
-    user_data = await collection.find_one({"username": user_credentials.username, "type": "user"})
+    user_data = await users_collection.find_one({"username": user_credentials.username})
     if not user_data or not verify_password(user_credentials.password, user_data["password"]):
         raise HTTPException(status_code=401, detail="Incorrect username or password")
     
+    # Save login record
+    login_record = LoginRecord(
+        username=user_credentials.username,
+        success=True
+    )
+    login_dict = prepare_for_mongo(login_record.dict())
+    await login_collection.insert_one(login_dict)
+    
     user_data = parse_from_mongo(user_data)
-    user = User(**{k: v for k, v in user_data.items() if k != 'password'})
+    user_data.pop('password', None)  # Remove password from response
+    user = User(**user_data)
     
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
