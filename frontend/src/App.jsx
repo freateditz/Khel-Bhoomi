@@ -42,7 +42,7 @@ import {
   Medal
 } from "lucide-react";
 
-const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 // Authentication Context
