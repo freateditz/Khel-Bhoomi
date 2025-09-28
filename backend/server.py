@@ -184,7 +184,7 @@ async def register(user_data: UserCreate):
 
 @api_router.post("/auth/login", response_model=Token)
 async def login(user_credentials: UserLogin):
-    user_data = await db.users.find_one({"username": user_credentials.username})
+    user_data = await collection.find_one({"username": user_credentials.username, "type": "user"})
     if not user_data or not verify_password(user_credentials.password, user_data["password"]):
         raise HTTPException(status_code=401, detail="Incorrect username or password")
     
