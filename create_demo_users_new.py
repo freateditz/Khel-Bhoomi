@@ -238,7 +238,7 @@ async def create_demo_users():
     print(f"Posts: {posts_count}")
     print(f"Signups: {signup_count}")
     
-    await client.close()
+    client.close()
 
 if __name__ == "__main__":
     asyncio.run(create_demo_users())
