@@ -72,13 +72,16 @@ const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  const fetchUserProfile = async () => {
+  const fetchUserProfile = async (skipLogoutOnError = false) => {
     try {
       const response = await axios.get(`${API}/users/me`);
       setUser(response.data);
     } catch (error) {
       console.error('Error fetching user profile:', error);
-      logout();
+      // Only logout if not during initial login process
+      if (!skipLogoutOnError) {
+        logout();
+      }
     } finally {
       setLoading(false);
     }
