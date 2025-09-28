@@ -169,9 +169,10 @@ async def register(user_data: UserCreate):
     
     user_dict = user.dict()
     user_dict['password'] = hashed_password
+    user_dict['type'] = 'user'  # Add type field for single collection
     user_dict = prepare_for_mongo(user_dict)
     
-    await db.users.insert_one(user_dict)
+    await collection.insert_one(user_dict)
     
     # Create access token
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
