@@ -10,6 +10,9 @@ export default defineConfig({
     port: 3000,
     open: false,
     cors: true,
+    hmr: {
+      clientPort: 443
+    },
     proxy: {
       // Optional: Proxy API calls to backend during development
       '/api': {
