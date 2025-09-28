@@ -43,7 +43,13 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 security = HTTPBearer()
 
 # Create the main app
-app = FastAPI(title="Khel Bhoomi API", description="Sports Social Platform API")
+app = FastAPI(
+    title="Khel Bhoomi API", 
+    description="Sports Social Platform API",
+    version="1.0.0",
+    docs_url="/docs" if os.environ.get('ENVIRONMENT') != 'production' else None,
+    redoc_url="/redoc" if os.environ.get('ENVIRONMENT') != 'production' else None
+)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
