@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
@@ -23,18 +23,26 @@ export default defineConfig({
       },
     },
   },
+  preview: {
+    host: '0.0.0.0',
+    port: process.env.PORT || 4173,
+    cors: true,
+  },
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: mode === 'development',
+    minify: mode === 'production' ? 'esbuild' : false,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
           utils: ['axios', 'lucide-react'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-avatar', '@radix-ui/react-select'],
         },
       },
     },
+    chunkSizeWarningLimit: 1000,
   },
   resolve: {
     alias: {
