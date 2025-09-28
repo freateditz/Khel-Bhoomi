@@ -275,14 +275,19 @@ async def create_post(post_data: PostCreate, current_user: User = Depends(get_cu
     )
     
     post_dict = prepare_for_mongo(post.dict())
-    post_dict['type'] = 'post'  # Add type field for single collection
-    await collection.insert_one(post_dict)
+    await posts_collection.insert_one(post_dict)
+    
+    # Update user's post count in profile
+    await profile_collection.update_one(
+        {"username": current_user.username},
+        {"$inc": {"posts_count": 1}}
+    )
     
     return post
 
 @api_router.get("/posts", response_model=List[Post])
 async def get_posts(skip: int = 0, limit: int = 20):
-    posts_data = await collection.find({"type": "post"}).sort("created_at", -1).skip(skip).limit(limit).to_list(length=None)
+    posts_data = await posts_collection.find({}).sort("created_at", -1).skip(skip).limit(limit).to_list(length=None)
     posts = []
     for post_data in posts_data:
         post_data = parse_from_mongo(post_data)
@@ -291,7 +296,7 @@ async def get_posts(skip: int = 0, limit: int = 20):
 
 @api_router.get("/posts/user/{user_id}", response_model=List[Post])
 async def get_user_posts(user_id: str):
-    posts_data = await collection.find({"user_id": user_id, "type": "post"}).sort("created_at", -1).to_list(length=None)
+    posts_data = await posts_collection.find({"user_id": user_id}).sort("created_at", -1).to_list(length=None)
     posts = []
     for post_data in posts_data:
         post_data = parse_from_mongo(post_data)
