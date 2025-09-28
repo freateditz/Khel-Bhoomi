@@ -144,10 +144,12 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
     
-    user_data = await collection.find_one({"username": username, "type": "user"})
+    user_data = await users_collection.find_one({"username": username})
     if user_data is None:
         raise HTTPException(status_code=401, detail="User not found")
     
+    # Remove password from user data
+    user_data.pop('password', None)
     return User(**user_data)
 
 def prepare_for_mongo(data):
