@@ -64,7 +64,7 @@ class KhelBhoomiAPITester:
         success, response = self.run_test(
             f"User Registration ({role})",
             "POST",
-            "auth/register",
+            "auth/signup",
             200,
             data={
                 "username": username,
