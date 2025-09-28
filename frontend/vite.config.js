@@ -13,6 +13,7 @@ export default defineConfig({
     hmr: {
       clientPort: 443
     },
+    allowedHosts: ['problem-spotter-1.preview.emergentagent.com'],
     proxy: {
       // Optional: Proxy API calls to backend during development
       '/api': {
