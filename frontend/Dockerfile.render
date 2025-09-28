@@ -1,0 +1,23 @@
+# Dockerfile for Render deployment
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app/frontend
+
+# Copy package files
+COPY package.json yarn.lock ./
+
+# Install dependencies
+RUN yarn install --frozen-lockfile
+
+# Copy source code
+COPY . .
+
+# Build the application
+RUN yarn build
+
+# Expose port
+EXPOSE $PORT
+
+# Command to run the application
+CMD ["sh", "-c", "yarn preview --host 0.0.0.0 --port $PORT"]
