@@ -310,12 +310,13 @@ async def get_current_user_profile(current_user: User = Depends(get_current_user
 
 @api_router.get("/users/{username}", response_model=User)
 async def get_user_profile(username: str):
-    user_data = await collection.find_one({"username": username, "type": "user"})
+    user_data = await users_collection.find_one({"username": username})
     if not user_data:
         raise HTTPException(status_code=404, detail="User not found")
     
     user_data = parse_from_mongo(user_data)
-    return User(**{k: v for k, v in user_data.items() if k != 'password'})
+    user_data.pop('password', None)  # Remove password
+    return User(**user_data)
 
 @api_router.put("/users/me", response_model=User)
 async def update_user_profile(user_update: UserUpdate, current_user: User = Depends(get_current_user)):
@@ -333,22 +334,34 @@ async def update_user_profile(user_update: UserUpdate, current_user: User = Depe
     if not update_data:
         raise HTTPException(status_code=400, detail="No fields to update")
     
-    # Update user in database
-    result = await collection.update_one(
-        {"id": current_user.id, "type": "user"}, 
+    # Update user in users collection
+    result = await users_collection.update_one(
+        {"id": current_user.id}, 
         {"$set": update_data}
     )
     
     if result.matched_count == 0:
         raise HTTPException(status_code=404, detail="User not found")
     
+    # Update profile collection
+    await profile_collection.update_one(
+        {"user_id": current_user.id},
+        {"$set": update_data}
+    )
+    
     # Return updated user
-    updated_user_data = await collection.find_one({"id": current_user.id, "type": "user"})
+    updated_user_data = await users_collection.find_one({"id": current_user.id})
     if not updated_user_data:
         raise HTTPException(status_code=404, detail="User not found")
     
     updated_user_data = parse_from_mongo(updated_user_data)
-    return User(**{k: v for k, v in updated_user_data.items() if k != 'password'})
+    updated_user_data.pop('password', None)
+    return User(**updated_user_data)
+
+# Health check endpoint
+@api_router.get("/health")
+async def health_check():
+    return {"status": "healthy", "message": "Khel Bhoomi API is running"}
 
 # Include the router in the main app
 app.include_router(api_router)
