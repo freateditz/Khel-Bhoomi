@@ -1692,7 +1692,7 @@ const AuthPage = () => {
     setLoading(true);
 
     try {
-      const endpoint = isLogin ? '/auth/login' : '/auth/register';
+      const endpoint = isLogin ? '/auth/login' : '/auth/signup';
       const payload = isLogin 
         ? { username: formData.username, password: formData.password }
         : formData;
