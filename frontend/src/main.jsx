@@ -77,7 +77,7 @@ root.render(
 
 // Hot Module Replacement (HMR) for development
 if (import.meta.hot) {
-  import.meta.hot.accept('./App.js', (newApp) => {
+  import.meta.hot.accept('./App.jsx', (newApp) => {
     console.log('🔥 Hot reloading App component');
   });
 }
