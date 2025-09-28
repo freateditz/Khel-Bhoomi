@@ -152,7 +152,7 @@ def parse_from_mongo(item):
 @api_router.post("/auth/register", response_model=Token)
 async def register(user_data: UserCreate):
     # Check if user exists
-    existing_user = await db.users.find_one({"$or": [{"username": user_data.username}, {"email": user_data.email}]})
+    existing_user = await collection.find_one({"$or": [{"username": user_data.username}, {"email": user_data.email}], "type": "user"})
     if existing_user:
         raise HTTPException(status_code=400, detail="Username or email already registered")
     
