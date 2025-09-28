@@ -229,7 +229,7 @@ async def get_posts(skip: int = 0, limit: int = 20):
 
 @api_router.get("/posts/user/{user_id}", response_model=List[Post])
 async def get_user_posts(user_id: str):
-    posts_data = await db.posts.find({"user_id": user_id}).sort("created_at", -1).to_list(length=None)
+    posts_data = await collection.find({"user_id": user_id, "type": "post"}).sort("created_at", -1).to_list(length=None)
     posts = []
     for post_data in posts_data:
         post_data = parse_from_mongo(post_data)
