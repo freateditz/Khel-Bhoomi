@@ -91,13 +91,10 @@ class LoginRecord(BaseModel):
     user_agent: Optional[str] = None
     success: bool = True
 
-class SignupRecord(BaseModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    username: str
-    email: str
-    signup_time: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    role: str
-    full_name: str
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+    user: User
 
 # Post Models
 class PostCreate(BaseModel):
