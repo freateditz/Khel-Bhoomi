@@ -21,7 +21,18 @@ load_dotenv(ROOT_DIR / '.env')
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
-collection = db[os.environ.get('COLLECTION_NAME', 'Data')]
+
+# Collections - Using your specific collection structure
+users_collection = db['users']
+login_collection = db['login']
+signup_collection = db['signup']
+posts_collection = db['posts']
+profile_collection = db['profile']
+comments_collection = db['comments']
+likes_collection = db['likes']
+follows_collection = db['follows']
+messages_collection = db['messages']
+data_collection = db['Data']  # Keep existing collection for backward compatibility
 
 # JWT and Password setup
 SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'your-secret-key-here')
@@ -31,8 +42,8 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 security = HTTPBearer()
 
-# Create the main app without a prefix
-app = FastAPI()
+# Create the main app
+app = FastAPI(title="Khel Bhoomi API", description="Sports Social Platform API")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
