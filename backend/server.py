@@ -83,10 +83,21 @@ class User(BaseModel):
     achievements: List[str] = []
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-    user: User
+class LoginRecord(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    username: str
+    login_time: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    ip_address: Optional[str] = None
+    user_agent: Optional[str] = None
+    success: bool = True
+
+class SignupRecord(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    username: str
+    email: str
+    signup_time: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    role: str
+    full_name: str
 
 # Post Models
 class PostCreate(BaseModel):
