@@ -1,0 +1,46 @@
+services:
+  # Backend API Service
+  - type: web
+    name: khel-bhoomi-backend
+    env: python
+    plan: starter
+    buildCommand: cd backend && pip install -r requirements.txt
+    startCommand: cd backend && uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGO_URL
+        sync: false  # Set this in Render dashboard
+      - key: DB_NAME
+        value: Khelbhoomi
+      - key: JWT_SECRET_KEY
+        generateValue: true  # Render will generate a secure secret
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: ENVIRONMENT
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        fromService:
+          type: web
+          name: khel-bhoomi-backend
+          property: port
+
+  # Frontend Service  
+  - type: web
+    name: khel-bhoomi-frontend
+    env: node
+    plan: starter
+    buildCommand: cd frontend && yarn install && yarn build
+    startCommand: cd frontend && yarn preview --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: VITE_BACKEND_URL
+        fromService:
+          type: web
+          name: khel-bhoomi-backend
+          property: host
+      - key: NODE_ENV
+        value: production
+
+# Optional: Add a database if needed (MongoDB Atlas is recommended)
+databases:
+  # Use MongoDB Atlas instead of Render's database for better performance
