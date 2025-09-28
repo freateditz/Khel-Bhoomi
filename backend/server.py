@@ -275,7 +275,7 @@ async def update_user_profile(user_update: UserUpdate, current_user: User = Depe
         raise HTTPException(status_code=404, detail="User not found")
     
     # Return updated user
-    updated_user_data = await db.users.find_one({"id": current_user.id})
+    updated_user_data = await collection.find_one({"id": current_user.id, "type": "user"})
     if not updated_user_data:
         raise HTTPException(status_code=404, detail="User not found")
     
