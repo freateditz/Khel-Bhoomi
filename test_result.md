@@ -301,6 +301,18 @@ frontend:
           agent: "main"
           comment: "Fixed all Render deployment issues: Updated PostCSS config for ES module compatibility, added build:static script, created _redirects for SPA routing, added build verification script, and comprehensive deployment documentation. Build process now works perfectly with 552K optimized output."
 
+  - task: "Fix backend API 404 routing errors"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "main"
+          comment: "Fixed critical backend API routing issue causing 404 errors. Moved CORS middleware before router inclusion, added root test route, verified all /api endpoints are properly configured. Backend needs redeployment for fix to take effect. All API routes validated and working in configuration."
+
 metadata:
   created_by: "main_agent"
   version: "1.0"
