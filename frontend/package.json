@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "build:production": "vite build --mode production",
+    "build:static": "vite build --mode production --base=./",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
     "start": "vite --host 0.0.0.0 --port 3000",
