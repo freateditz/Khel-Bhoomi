@@ -18,7 +18,13 @@ yarn build:static
 
 # Copy _redirects file to dist for SPA routing
 echo "📋 Setting up SPA routing..."
-cp _redirects dist/
+if [ -f "_redirects" ]; then
+    cp _redirects dist/
+    echo "✅ _redirects file copied to dist/"
+else
+    echo "⚠️ _redirects file not found, creating one..."
+    echo "/*    /index.html   200" > dist/_redirects
+fi
 
 echo "✅ Build completed successfully!"
 echo "📁 Built files are in: frontend/dist/"
