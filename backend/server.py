@@ -379,9 +379,7 @@ async def update_user_profile(user_update: UserUpdate, current_user: User = Depe
 async def health_check():
     return {"status": "healthy", "message": "Khel Bhoomi API is running"}
 
-# Include the router in the main app
-app.include_router(api_router)
-
+# Add CORS middleware first (before including routes)
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
@@ -389,6 +387,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include the router in the main app
+app.include_router(api_router)
 
 # Configure logging
 logging.basicConfig(
