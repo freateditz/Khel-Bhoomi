@@ -388,6 +388,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Add a root route for testing
+@app.get("/")
+async def root():
+    return {"message": "Khel Bhoomi Backend API", "status": "running", "docs": "/docs"}
+
 # Include the router in the main app
 app.include_router(api_router)
 
