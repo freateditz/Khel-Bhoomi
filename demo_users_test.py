@@ -3,7 +3,7 @@ import json
 
 def test_demo_users():
     """Test all demo users mentioned in the request"""
-    base_url = "https://env-config-4.preview.emergentagent.com/api"
+    base_url = "https://deploy-troubleshoot-15.preview.emergentagent.com/api"
     
     # Demo users to test
     demo_users = [
@@ -61,7 +61,7 @@ def test_health_check():
     
     # Test /docs endpoint
     try:
-        docs_response = requests.get("https://env-config-4.preview.emergentagent.com/docs")
+        docs_response = requests.get("https://deploy-troubleshoot-15.preview.emergentagent.com/docs")
         print(f"📖 /docs endpoint: Status {docs_response.status_code}")
         if docs_response.status_code == 200:
             print("✅ API documentation is accessible")
@@ -72,7 +72,7 @@ def test_health_check():
     
     # Test basic API endpoint
     try:
-        api_response = requests.get("https://env-config-4.preview.emergentagent.com/api/posts")
+        api_response = requests.get("https://deploy-troubleshoot-15.preview.emergentagent.com/api/posts")
         print(f"📱 /api/posts endpoint: Status {api_response.status_code}")
         if api_response.status_code == 200:
             posts = api_response.json()
@@ -100,7 +100,7 @@ def test_registration():
     
     try:
         response = requests.post(
-            "https://env-config-4.preview.emergentagent.com/api/auth/register",
+            "https://deploy-troubleshoot-15.preview.emergentagent.com/api/auth/register",
             json=test_user,
             headers={'Content-Type': 'application/json'}
         )
@@ -113,7 +113,7 @@ def test_registration():
             
             # Test login with new user
             login_response = requests.post(
-                "https://env-config-4.preview.emergentagent.com/api/auth/login",
+                "https://deploy-troubleshoot-15.preview.emergentagent.com/api/auth/login",
                 json={"username": test_user['username'], "password": test_user['password']},
                 headers={'Content-Type': 'application/json'}
             )

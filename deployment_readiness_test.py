@@ -12,7 +12,7 @@ from datetime import datetime
 
 class RenderDeploymentTester:
     def __init__(self):
-        self.base_url = "https://env-config-4.preview.emergentagent.com"
+        self.base_url = "https://deploy-troubleshoot-15.preview.emergentagent.com"
         self.api_url = f"{self.base_url}/api"
         self.tests_run = 0
         self.tests_passed = 0
@@ -226,7 +226,7 @@ class RenderDeploymentTester:
         try:
             # Test preflight request
             headers = {
-                'Origin': 'https://env-config-4.preview.emergentagent.com',
+                'Origin': 'https://deploy-troubleshoot-15.preview.emergentagent.com',
                 'Access-Control-Request-Method': 'POST',
                 'Access-Control-Request-Headers': 'Content-Type,Authorization'
             }
@@ -248,7 +248,7 @@ class RenderDeploymentTester:
                 
                 # Test actual CORS request
                 test_response = requests.get(f"{self.api_url}/health", 
-                                           headers={'Origin': 'https://env-config-4.preview.emergentagent.com'}, 
+                                           headers={'Origin': 'https://deploy-troubleshoot-15.preview.emergentagent.com'}, 
                                            timeout=10)
                 if test_response.status_code == 200:
                     self.log_test("CORS requests working", True, "Cross-origin requests allowed")
